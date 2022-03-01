@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CasinoSim"
         mc:Ignorable="d"
         Title="blackJack" Height="450" Width="800">
-    <Window.Resources>
+   <Window.Resources>
         <Style BasedOn="{StaticResource {x:Type Button}}"
            TargetType="Button"
            x:Key="chipButton">
@@ -59,6 +59,29 @@
         <Image Source="files/resources/bj.png" Panel.ZIndex="2" HorizontalAlignment="Left" Width="125" Margin="10,-5,0,338"/>
         <Image Source="files/resources/CasinoAssets/BlackJack/BlackJackTable.png" Panel.ZIndex="2" HorizontalAlignment="Left" Width="498" Margin="164,45,0,124" Stretch="Fill"/>
         <Image Source="files/resources/CasinoAssets/BlackJack/Cards/cardBack_blue4.png" Panel.ZIndex="2" HorizontalAlignment="Left" Width="38" Margin="594,48.5,0,321" Stretch="Fill"/>
+        <Image x:Name="dealerImage1" Panel.ZIndex="2" Margin="354,58,400,322" Stretch="Fill"/>
+        <Image x:Name="dealerImage2" Panel.ZIndex="3" Margin="374,58,380,322" Stretch="Fill"/>
+        <Image x:Name="dealerImage3" Panel.ZIndex="4" Margin="394,58,360,322" Stretch="Fill"/>
+        <Image x:Name="dealerImage4" Panel.ZIndex="5" Margin="414,58,340,322" Stretch="Fill"/>
+        <Image x:Name="dealerImage5" Panel.ZIndex="6" Margin="434,58,320,322" Stretch="Fill"/>
+        <Image x:Name="dealerImage6" Panel.ZIndex="7" Margin="454,58,300,322" Stretch="Fill"/>
+        <Image x:Name="dealerImage7" Panel.ZIndex="8" Margin="474,58,280,322" Stretch="Fill"/>
+        <Image x:Name="dealerImage8" Panel.ZIndex="9" Margin="494,58,260,322" Stretch="Fill"/>
+        <Image x:Name="dealerImage9" Panel.ZIndex="10" Margin="514,58,240,322" Stretch="Fill"/>
+        <Image x:Name="dealerImage10" Panel.ZIndex="11" Margin="534,58,220,322" Stretch="Fill"/>
+        <Image x:Name="dealerImage11" Panel.ZIndex="12" Margin="554,58,200,322" Stretch="Fill"/>
+
+        <Image x:Name="playerImage1" Panel.ZIndex="2" Margin="354,258,400,127" Stretch="Fill"/>
+        <Image x:Name="playerImage2" Panel.ZIndex="3" Margin="374,258,380,127" Stretch="Fill"/>
+        <Image x:Name="playerImage3" Panel.ZIndex="4" Margin="394,258,360,127" Stretch="Fill"/>
+        <Image x:Name="playerImage4" Panel.ZIndex="5" Margin="414,258,340,127" Stretch="Fill"/>
+        <Image x:Name="playerImage5" Panel.ZIndex="6" Margin="434,258,320,127" Stretch="Fill"/>
+        <Image x:Name="playerImage6" Panel.ZIndex="7" Margin="454,258,300,127" Stretch="Fill"/>
+        <Image x:Name="playerImage7" Panel.ZIndex="8" Margin="474,258,280,127" Stretch="Fill"/>
+        <Image x:Name="playerImage8" Panel.ZIndex="9" Margin="494,258,260,127" Stretch="Fill"/>
+        <Image x:Name="playerImage9" Panel.ZIndex="10" Margin="514,258,240,127" Stretch="Fill"/>
+        <Image x:Name="playerImage10" Panel.ZIndex="11" Margin="534,258,220,127" Stretch="Fill"/>
+        <Image x:Name="playerImage11" Panel.ZIndex="12" Margin="554,258,200,127" Stretch="Fill"/>
 
         <!--NEED TO MAKE 8 IMAGE HOLDERS FOR CHIPS-->
         <Button x:Name="backButton" Panel.ZIndex="2" BorderBrush="Black" BorderThickness="2"   Content="EXIT" HorizontalAlignment="Left" Margin="28,0,0,20" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" Height="40" Width="131" Background="#FFFFCD07" FontFamily="Playbill" FontSize="36" Padding="2px" Click="backButton_Click" />
@@ -78,37 +101,37 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button Style="{StaticResource chipButton}" Grid.Column="0" Grid.ColumnSpan="1">
+            <Button Style="{StaticResource chipButton}" Grid.Column="0" Grid.ColumnSpan="2" Height="50" Margin="0,0,58,0" VerticalAlignment="Top" Click="Button_Click">
                 <Image  Style="{StaticResource Chip}"  Source="files/resources/Chip1.png"  Height="32" RenderTransformOrigin="0.625,0.441" />
             </Button>
-            <Button Style="{StaticResource chipButton}" Grid.Column="1">
+            <Button Style="{StaticResource chipButton}" Grid.Column="1" Click="Button_Click_1">
                 <Image  Source="files/resources/Chip5.png"  Margin="12,8,11,7" Height="Auto"/>
             </Button>
-            <Button Style="{StaticResource chipButton}" Grid.Column="2">
+            <Button Style="{StaticResource chipButton}" Grid.Column="2" Click="Button_Click_2">
                 <Image Source="files/resources/Chip10.png"  Margin="12,8,11,7" Height="Auto"/>
             </Button>
-            <Button Style="{StaticResource chipButton}" Grid.Column="3">
+            <Button Style="{StaticResource chipButton}" Grid.Column="3" Click="Button_Click_3">
                 <Image Source="files/resources/Chip20.png"  Margin="12,8,11,7" Height="Auto"/>
             </Button>
-            <Button Style="{StaticResource chipButton}" Grid.Column="4">
+            <Button Style="{StaticResource chipButton}" Grid.Column="4" Click="Button_Click_4">
                 <Image Source="files/resources/Chip50.png"  Margin="12,8,11,7" Height="Auto"/>
             </Button>
-            <Button Style="{StaticResource chipButton}" Grid.Column="5">
+            <Button Style="{StaticResource chipButton}" Grid.Column="5" Click="Button_Click_5">
                 <Image  Source="files/resources/Chip100.png"  Margin="12,8,11,7" Height="Auto"/>
             </Button>
 
-            <Button Style="{StaticResource chipButton}" Grid.Column="6">
+            <Button Style="{StaticResource chipButton}" Grid.Column="6" Click="Button_Click_6">
                 <Image  Source="files/resources/Chip1000.png"  Margin="12,8,11,7" Height="Auto"/>
             </Button>
-            <Button Style="{StaticResource chipButton}" Grid.Column="7">
+            <Button Style="{StaticResource chipButton}" Grid.Column="7" Click="Button_Click_7">
                 <Image  Source="files/resources/Chip5000.png"  Margin="12,8,11,7" Height="Auto"/>
             </Button>
 
 
         </Grid>
 
-        <Button x:Name="standButton"  Panel.ZIndex="2" Content="STAND" BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Right" Margin="0,0,28,63" VerticalAlignment="Bottom" RenderTransformOrigin="-8.17,6.078" Height="40" Width="131" Background="#FFFFCD07" FontFamily="Playbill" FontSize="36" Padding="2px" Click="dealButton_Click" />
-        <Button x:Name="hitButton"  Panel.ZIndex="2" Content="HIT" BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Right" Margin="0,0,28,20" VerticalAlignment="Bottom" RenderTransformOrigin="-8.17,6.078" Height="40" Width="131" Background="#FFFFCD07" FontFamily="Playbill" FontSize="36" Padding="2px" Click="dealButton_Click" />
+        <Button x:Name="standButton"  Panel.ZIndex="2" Content="STAND" BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Right" Margin="0,0,28,63" VerticalAlignment="Bottom" RenderTransformOrigin="-8.17,6.078" Height="40" Width="131" Background="#FFFFCD07" FontFamily="Playbill" FontSize="36" Padding="2px" Click="standButton_Click" />
+        <Button x:Name="hitButton"  Panel.ZIndex="2" Content="HIT" BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Right" Margin="0,0,28,20" VerticalAlignment="Bottom" RenderTransformOrigin="-8.17,6.078" Height="40" Width="131" Background="#FFFFCD07" FontFamily="Playbill" FontSize="36" Padding="2px" Click="hitButton_Click" />
         <Button x:Name="rulesButton" Panel.ZIndex="2" BorderBrush="Black" BorderThickness="2"   Content="RULES" HorizontalAlignment="Left" Margin="28,0,0,299" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" Height="34" Width="84" Background="#FFFFCD07" FontFamily="Playbill" FontSize="27" Padding="2px" Click="rulesButton_Click" />
 
     </Grid>

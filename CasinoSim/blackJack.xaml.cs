@@ -29,6 +29,14 @@ namespace CasinoSim
         bool chip1000 = false;
         bool chip5000 = false;
 
+        bool playerBlackJack;
+        bool playerBust;
+        bool playerWin;
+        bool dealerBlackJack;
+        bool dealerBust;
+        bool dealerWin;
+        bool gameDraw;
+
         List<bool> chipsList = new List<bool>();
 
         Deck deck = new Deck(true);
@@ -48,6 +56,12 @@ namespace CasinoSim
             chipsList.Add(chip100);
             chipsList.Add(chip1000);
             chipsList.Add(chip5000);
+
+
+            //foreach (Card card in deck.cards)
+            //{
+            //    addImageToCard(ref card);
+            //}
 
         }
         public void resetChipsBool()
@@ -73,6 +87,7 @@ namespace CasinoSim
             dealButton.Visibility = Visibility.Hidden;
             hitButton.Visibility = Visibility.Visible;
             standButton.Visibility = Visibility.Visible;
+
             player.hand.Add(deck.drawCard());
             player.hand.Add(deck.drawCard());
             dealer.hand.Add(deck.drawCard());
@@ -89,12 +104,8 @@ namespace CasinoSim
             {
                 deckCards += $"{card.ToString()} \n";
             }
-            MessageBox.Show($"BlackJack?:{deck.isBlackJack} \n" +
-                $"Player: {player.value.ToString()} {player.hand[0].ToString()} {player.hand[1].ToString()} \n " +
-                $"Dealer: {dealer.value.ToString()} {dealer.hand[0].ToString()} {dealer.hand[1].ToString()} \n" +
-                $"DECK CARDS: \n" +
-                $"{deckCards}");
-
+            playerImage1.Source = player.hand[0].image.Source;
+            playerImage2.Source = player.hand[1].image.Source;
         }
 
         private void rulesButton_Click(object sender, RoutedEventArgs e)
@@ -158,7 +169,75 @@ namespace CasinoSim
             chip5000 = true;
             bet = 5000;
         }
+        private void standButton_Click(object sender, RoutedEventArgs e)
+        {
+            while(dealer.value < 16)
+            {
+                dealer.hand.Add(deck.drawCard());
+                foreach (Card card in dealer.hand)
+                {
+                    dealer.value += card.Value;
+                }
+            }
+            checkWin();
+        }
+        private void hitButton_Click(object sender, RoutedEventArgs e)
+        {
+            player.value = 0;
+            player.hand.Add(deck.drawCard());
+            foreach (Card card in player.hand)
+            {
+                player.value += card.Value;
+            }
+            if(player.value >= 21)
+            {
+                checkWin();
+            }
+            MessageBox.Show($"{player.value}");
+        }
 
+        public void checkWin()
+        {
+            if (player.value == 21)
+            {
+                playerBlackJack = true;
+            }
+            else if (player.value > dealer.value && player.value < 21)
+            {
+                playerWin = true;
+            }
+            else if (player.value > 21)
+            {
+                playerBust = true;
+                dealerWin = true;
+            }
+            else if (dealer.value == 21)
+            {
+                dealerBlackJack = true;
+            }
+            else if (dealer.value > player.value && dealer.value < 21)
+            {
+                dealerWin = true;
+            }
+            else if (dealer.value > 21)
+            {
+                dealerBust = true;
+                playerWin = true;
+            }
+            else if (dealer.value == player.value)
+            {
+                gameDraw = true;
+            }
+
+            MessageBox.Show($"Player BlackJack: {playerBlackJack} \n" +
+                $"Player Win: {playerWin} \n" +
+                $"Player Bust: {playerBust} \n" +
+                $"Dealer BlackJack: {dealerBlackJack} \n" +
+                $"Dealer Win: {dealerWin} \n" +
+                $"Dealer Bust: {dealerBust} \n" +
+                $"Player: {player.value} : {player.handToString()} \n " +
+                $"Dealer: {dealer.value} : {dealer.handToString()} \n");
+        }
     }
 
     public class Deck
@@ -219,7 +298,6 @@ namespace CasinoSim
                         {
                             card.Name = value + suit;
                         }
-
                         cards.Add(card);
                     }
                 }
@@ -265,9 +343,17 @@ namespace CasinoSim
         {
             Random rand = new Random();
             Card card = cards[rand.Next(cards.Count())];
+            addImageToCard(ref card);
             cards.Remove(card);
             return card;
-    }
+        }
+
+        public void addImageToCard(ref Card card)
+        {
+            card.image.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/BlackJack/Cards/{card.Name}.png"));
+            card.image.Height = 65;
+            card.image.Width = 46;
+        }
     }
 
     public class Card
@@ -277,6 +363,8 @@ namespace CasinoSim
         public string Suit { get; set; }
         //To be done later when we have image resources
         //Image image;
+        public Image image = new Image();
+
         public override string ToString()
         {
             return $"{Name}, {Value}, and {Suit} :: ";
@@ -287,5 +375,15 @@ namespace CasinoSim
     {
         public List<Card> hand = new List<Card>();
         public int value = 0;
+
+        public string handToString()
+        {
+            string cards = "";
+            foreach (Card card in hand)
+            {
+                cards += $"{card.Name} ";
+            }
+            return cards;
+        }
     }
 }

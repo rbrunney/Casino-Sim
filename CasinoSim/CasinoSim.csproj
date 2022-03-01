@@ -54,11 +54,283 @@
 
   <ItemGroup>
     <Resource Include="files\resources\ArrowDown.png" />
-    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\cardBack_blue4.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\cardBack_blue4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\10C.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\10C.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\10D.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\10D.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\10H.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\10H.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\10S.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\10S.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\2C.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\2C.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\2D.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\2D.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\2H.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\2H.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\2S.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\2S.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\3C.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\3C.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\3D.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\3D.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\3H.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\3H.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\3S.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\3S.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\4C.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\4C.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\4D.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\4D.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\4H.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\4H.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\4S.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\4S.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\5C.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\5C.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\5D.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\5D.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\5H.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\5H.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\5S.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\5S.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\6C.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\6C.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\6D.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\6D.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\6H.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\6H.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\6S.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\6S.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\7C.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\7C.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\7D.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\7D.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\7H.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\7H.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\7S.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\7S.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\8C.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\8C.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\8D.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\8D.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\8H.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\8H.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\8S.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\8S.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\9C.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\9C.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\9D.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\9D.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\9H.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\9H.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\9S.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\9S.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\AC.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\AC.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\AD.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\AD.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\AH.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\AH.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\AS.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\AS.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\cardBack_blue1.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\cardBack_blue1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\cardBack_blue2.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\cardBack_blue2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\cardBack_blue3.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\cardBack_blue3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\cardBack_blue5.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\cardBack_blue5.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\cardBack_green1.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\cardBack_green1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\cardBack_green2.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\cardBack_green2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\cardBack_green3.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\cardBack_green3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\cardBack_green4.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\cardBack_green4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\cardBack_green5.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\cardBack_green5.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\cardBack_red1.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\cardBack_red1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\cardBack_red2.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\cardBack_red2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\cardBack_red3.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\cardBack_red3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\cardBack_red4.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\cardBack_red4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\cardBack_red5.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\cardBack_red5.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\cardJoker.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\cardJoker.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\JC.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\JC.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\JD.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\JD.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\JH.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\JH.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\JS.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\JS.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\KC.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\KC.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\KD.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\KD.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\KH.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\KH.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\KS.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\KS.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\QC.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\QC.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\QD.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\QD.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\QH.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\QH.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\QS.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\QS.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="files\resources\CasinoAssets\BlackJack\BlackJackTable.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\BlackJackTable.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="files\resources\CasinoAssets\Craps\Dice1.png" />
     <Resource Include="files\resources\CasinoAssets\Craps\Dice2.png" />
     <Resource Include="files\resources\CasinoAssets\Craps\Dice3.png">

@@ -8,15 +8,27 @@ namespace CasinoSim
 {
     class PlayerInfo
     {
-        public string Name { get; set; }
-        public int BankAmount { get; set; }
-        public int ChipAmount { get; set; }
 
-        public PlayerInfo(string name, int bankAmount)
+        private string name;
+        private int bankAmount;
+        private int chipAmount;
+
+        public string Name
         {
-            Name = name;
-            BankAmount = bankAmount;
-            ChipAmount = 0;
+            get { return name; }
+            set { name = value; }
+        }
+
+        public int BankAmount
+        {
+            get { return bankAmount;  }
+            set { bankAmount = value; }
+        }
+
+        public int ChipAmount
+        {
+            get { return chipAmount; }
+            set { chipAmount = value; }
         }
     }
 }

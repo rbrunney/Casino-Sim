@@ -28,12 +28,11 @@ namespace CasinoSim
         public Bank()
         {
             InitializeComponent();
-           labelchip = chipsBal.Content.ToString();
+            labelchip = chipsBal.Content.ToString();
             labelbank = bankBal.Content.ToString() ;
 
             chipsBal.Content += " "+ chips;
             bankBal.Content += " " + bank;
-
         }
         //back to game selection
         private void backButton_Click(object sender, RoutedEventArgs e)
