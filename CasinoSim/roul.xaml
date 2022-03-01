@@ -1,0 +1,107 @@
+﻿<Window x:Class="CasinoSim.roul"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CasinoSim"
+        mc:Ignorable="d"
+        Title="roul" Height="450" Width="800">
+    <Window.Resources>
+        <Style BasedOn="{StaticResource {x:Type Button}}"
+           TargetType="Button"
+           x:Key="chipButton">
+
+            <Setter Property="Template">
+
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="elc" BorderBrush="Transparent" BorderThickness="2" CornerRadius="20" Background="Transparent">
+                            <ContentControl Content="{TemplateBinding Content}" Foreground="#fff" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="elc" Value="#ccc"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background"  TargetName="elc" Value="green"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+
+            </Setter>
+        </Style>
+        <Style  
+           TargetType="Image"
+           x:Key="Chip">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Effect">
+                        <Setter.Value>
+
+                            <DropShadowEffect ShadowDepth="0" Color="White" Opacity="1" BlurRadius="6"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+
+
+            <Setter Property="Image.Height" Value="70"/>
+            <Setter Property="Image.Width" Value="70"/>
+
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/main.jpeg"/>
+        </Grid.Background>
+        <Image Source="files/resources/roul.png" Panel.ZIndex="2" HorizontalAlignment="Left" Width="125" Margin="10,-5,0,338"/>
+         <!--NEED TO MAKE 8 IMAGE HOLDERS FOR CHIPS-->
+        <Button x:Name="backButton" Panel.ZIndex="2" BorderBrush="Black" BorderThickness="2"   Content="EXIT" HorizontalAlignment="Left" Margin="28,0,0,20" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" Height="40" Width="131" Background="#FFFFCD07" FontFamily="Playbill" FontSize="36" Padding="2px" Click="backButton_Click" />
+        <Button x:Name="spinButton"  Panel.ZIndex="2" Content="SPIN" BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Right" Margin="0,0,28,20" VerticalAlignment="Bottom" RenderTransformOrigin="-8.17,6.078" Height="40" Width="131" Background="#FFFFCD07" FontFamily="Playbill" FontSize="36" Padding="2px" />
+        <Grid  Margin="164,348,167,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Style="{StaticResource chipButton}" Grid.Column="0" Grid.ColumnSpan="1">
+                <Image  Style="{StaticResource Chip}"  Source="/files/resources/Chip1.png"  Height="32" RenderTransformOrigin="0.625,0.441" />
+            </Button>
+            <Button Style="{StaticResource chipButton}" Grid.Column="1">
+                <Image  Source="/files/resources/Chip5.png"  Margin="12,8,11,7" Height="Auto"/>
+            </Button>
+            <Button Style="{StaticResource chipButton}" Grid.Column="2">
+                <Image Source="/files/resources/Chip10.png"  Margin="12,8,11,7" Height="Auto"/>
+            </Button>
+            <Button Style="{StaticResource chipButton}" Grid.Column="3">
+                <Image Source="/files/resources/Chip20.png"  Margin="12,8,11,7" Height="Auto"/>
+            </Button>
+            <Button Style="{StaticResource chipButton}" Grid.Column="4">
+                <Image Source="/files/resources/Chip50.png"  Margin="12,8,11,7" Height="Auto"/>
+            </Button>
+            <Button Style="{StaticResource chipButton}" Grid.Column="5">
+                <Image  Source="/files/resources/Chip100.png"  Margin="12,8,11,7" Height="Auto"/>
+            </Button>
+
+            <Button Style="{StaticResource chipButton}" Grid.Column="6">
+                <Image  Source="/files/resources/Chip1000.png"  Margin="12,8,11,7" Height="Auto"/>
+            </Button>
+            <Button Style="{StaticResource chipButton}" Grid.Column="7">
+                <Image  Source="/files/resources/Chip5000.png"  Margin="12,8,11,7" Height="Auto"/>
+            </Button>
+
+
+        </Grid>
+
+    </Grid>
+</Window>

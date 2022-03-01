@@ -1,0 +1,226 @@
+﻿<Window x:Class="CasinoSim.Craps"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CasinoSim"
+        mc:Ignorable="d"
+        Title="craps" Height="450" Width="800">
+
+    <Window.Resources>
+        <Style BasedOn="{StaticResource {x:Type Button}}"
+           TargetType="Button"
+           x:Key="chipButton">
+            <Setter Property="Template">
+
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="elc" BorderBrush="#fff" BorderThickness="1" CornerRadius="20" Background="gray">
+                            <ContentControl Content="{TemplateBinding Content}" Foreground="#fff" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="elc" Value="#ccc"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background"  TargetName="elc" Value="green"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+
+            </Setter>
+        </Style>
+        <Style
+           TargetType="Image"
+           x:Key="Chip">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect ShadowDepth="0" Color="White" Opacity="1" BlurRadius="20"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+
+
+            <Setter Property="Image.Height" Value="35"/>
+            <Setter Property="Image.Width" Value="35"/>
+            <Setter Property="TextBlock.FontFamily" Value="Segoe UI"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.75*" />
+            <ColumnDefinition Width="2.15*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="/main.jpeg"/>
+        </Grid.Background>
+
+
+        <Image Source="files/resources/craps.png" Panel.ZIndex="2" HorizontalAlignment="Center" Height="125" Margin="0,-10,0,265" />
+        <Button x:Name="backButton" Panel.ZIndex="2" BorderBrush="Black" BorderThickness="2"   Content="EXIT" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Height="40" Width="132" Background="#FFFFCD07" FontFamily="Playbill" FontSize="36" Padding="2px" Click="BackButton_Click" Grid.Row="1" />
+        <Button x:Name="rollButton"  Panel.ZIndex="2" Content="ROLL" BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="-8.17,6.078" Height="40" Width="132" Background="#FFFFCD07" FontFamily="Playbill" FontSize="36" Padding="2px" Grid.Row="1" Grid.Column="3" Click="RollButton_Click"/>
+
+        <Image Source="files/resources/CasinoAssets/Craps/CrapsBoard.png" Panel.ZIndex="3" Margin="1,11,15,56" Grid.ColumnSpan="3" Grid.Column="1" Grid.RowSpan="2"/>
+
+        <Grid  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Height="54" Margin="0,0,205,0" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnChip1" Style="{StaticResource chipButton}" Grid.Column="0" HorizontalAlignment="Right" Width="55" Click="BtnChip_Click">
+                <Image  Style="{StaticResource Chip}"  Source="files/resources/Chip1.png" Height="Auto" Margin="12,8,11,7" />
+            </Button>
+            <Button x:Name="btnChip5" Style="{StaticResource chipButton}" Grid.Column="1" Click="BtnChip_Click">
+                <Image  Source="files/resources/Chip5.png"  Margin="12,8,11,7" Height="Auto"/>
+            </Button>
+            <Button x:Name="btnChip10" Style="{StaticResource chipButton}" Grid.Column="2" Click="BtnChip_Click">
+                <Image Source="files/resources/Chip10.png"  Margin="12,8,11,7" Height="Auto"/>
+            </Button>
+            <Button x:Name="btnChip50" Style="{StaticResource chipButton}" Grid.Column="3" Click="BtnChip_Click">
+                <Image Source="files/resources/Chip50.png"  Margin="12,8,11,7" Height="Auto"/>
+            </Button>
+            <Button x:Name="btnChip100" Style="{StaticResource chipButton}" Grid.Column="4" Click="BtnChip_Click">
+                <Image  Source="files/resources/Chip100.png"  Margin="12,8,11,7" Height="Auto"/>
+            </Button>
+            <Button x:Name="btnChip500" Style="{StaticResource chipButton}" Grid.Column="5" Click="BtnChip_Click">
+                <Image  Source="files/resources/Chip500.png"  Margin="12,8,11,7" Height="Auto"/>
+            </Button>
+            <Button x:Name="btnChip1000" Style="{StaticResource chipButton}" Grid.Column="6" Click="BtnChip_Click">
+                <Image  Source="files/resources/Chip1000.png"  Margin="12,8,11,7" Height="Auto"/>
+            </Button>
+            <Button x:Name="btnChip5000" Style="{StaticResource chipButton}" Grid.Column="7" Click="BtnChip_Click">
+                <Image  Source="files/resources/Chip5000.png"  Margin="12,8,11,7" Height="Auto"/>
+            </Button>
+
+
+        </Grid>
+
+        <Grid Grid.Column="1" Panel.ZIndex="3" Margin="432,32,40,263" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Opacity="0.3" Background="Transparent" BorderThickness="0" x:Name="btnHardwayFour7to1" VerticalAlignment="Center" Panel.ZIndex="3" Height="28" Click="SingleRollBet_Click">
+                <Grid x:Name="btnHardwayFourChips"/>
+            </Button>
+            <Button Opacity="0.3" Background="Transparent" BorderThickness="0" x:Name="btnHardwayten7to1"   VerticalAlignment="Center" Panel.ZIndex="3"  Height="28" Grid.Column="2" Click="SingleRollBet_Click">
+                <Grid x:Name="btnHardwayTenChips"/>
+            </Button>
+            <Button Opacity="0.3" Background="Transparent" BorderThickness="0" x:Name="btnHardwaySix9to1"  VerticalAlignment="Center"  Panel.ZIndex="3"  Height="28" Grid.Row="1" Click="SingleRollBet_Click">
+                <Grid x:Name="btnHardwaySixChips"/>
+            </Button>
+            <Button Opacity="0.3" Background="Transparent" BorderThickness="0" x:Name="btnHardwayeight9to1" VerticalAlignment="Center" Panel.ZIndex="3" Height="28" Grid.Column="2" Grid.Row="1" Click="SingleRollBet_Click">
+                <Grid x:Name="btnHardwayEightChips"/>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Column="2" Panel.ZIndex="3" Margin="3,141,47,80">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button  Opacity="0.3" Background="Transparent" BorderThickness="0" VerticalAlignment="Center" x:Name="btnSingleRollSeven" Panel.ZIndex="3" Height="32" Grid.ColumnSpan="2" Click="SingleRollBet_Click" >
+                <Grid x:Name="btnSingleRollSevenChips"/>
+            </Button>
+            <Button  Opacity="0.3" Background="Transparent" BorderThickness="0" VerticalAlignment="Center" x:Name="btnSingleCraps"  Panel.ZIndex="3"  Height="32" Grid.Row="3" Grid.ColumnSpan="2" Click="SingleRollBet_Click">
+                <Grid x:Name="btnSingleCrapsChips"/>
+            </Button>
+            <Button  Opacity="0.3" Background="Transparent" BorderThickness="0" VerticalAlignment="Center" x:Name="btnTwoSingleRoll" Panel.ZIndex="3" HorizontalAlignment="Left"  Height="29" Width="57" Grid.Row="2" Click="SingleRollBet_Click">
+                <Grid x:Name="btnSingleRollTwoChips"/>
+            </Button>
+            <Button  Opacity="0.3" Background="Transparent" BorderThickness="0" VerticalAlignment="Center" x:Name="btnThreeSingleRoll"  Panel.ZIndex="3"  HorizontalAlignment="Left" Height="29" Width="57" Grid.Row="1"  Click="SingleRollBet_Click">
+                <Grid x:Name="btnSingleRollThreeChips"/>
+            </Button>
+            <Button  Opacity="0.3" Background="Transparent" BorderThickness="0" VerticalAlignment="Center" x:Name="btnTwelveSingleRoll" Panel.ZIndex="3" HorizontalAlignment="Right" Height="29" Width="57" Grid.Row="2" Grid.Column="1" Click="SingleRollBet_Click">
+                <Grid x:Name="btnSingleRollTwelveChips"/>
+            </Button>
+            <Button  Opacity="0.3" Background="Transparent" BorderThickness="0" VerticalAlignment="Center" x:Name="btnElevenSingleRoll" Panel.ZIndex="3" HorizontalAlignment="Right" Height="29" Width="57" Grid.Row="1" Grid.Column="1" Click="SingleRollBet_Click">
+                <Grid x:Name="btnSingleRollElevenChips"/>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Column="1" Margin="32,11,14,54" Grid.RowSpan="2" Panel.ZIndex="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="2.8*" />
+                <RowDefinition Height="2.2*" />
+                <RowDefinition Height="0.75*" />
+                <RowDefinition Height="1.25*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Image x:Name="imgDiceOne" Source="files/resources/CasinoAssets/Craps/Dice3.png" Panel.ZIndex="3" Grid.Column="1" Grid.Row="1"/>
+            <Image x:Name="imgDiceTwo" Source="files/resources/CasinoAssets/Craps/Dice4.png" Panel.ZIndex="3" Grid.Column="4" Grid.Row="1"/>
+
+            <Button Background="Transparent" BorderThickness="0" Opacity="0.3" Panel.ZIndex="3" x:Name="btnMultiRollFour" Click="BtnMultiRoll_Click">
+                <Grid x:Name="btnMultiRollFourChips"/>
+            </Button>
+            <Button Background="Transparent" BorderThickness="0" Opacity="0.3" Panel.ZIndex="3" x:Name="btnMultiRollFive" Grid.Column="1" Click="BtnMultiRoll_Click">
+                <Grid x:Name="btnMultiRollFiveChips"/>
+            </Button>
+            <Button Background="Transparent" BorderThickness="0" Opacity="0.3" Panel.ZIndex="3" x:Name="btnMultiRollSix" Grid.Column="2" Click="BtnMultiRoll_Click">
+                <Grid x:Name="btnMultiRollSixChips"/>
+            </Button>
+            <Button Background="Transparent" BorderThickness="0" Opacity="0.3" Panel.ZIndex="3" x:Name="btnMultiRollEight" Grid.Column="3" Click="BtnMultiRoll_Click">
+                <Grid x:Name="btnMultiRollEightChips"/>
+            </Button>
+            <Button Background="Transparent" BorderThickness="0" Opacity="0.3" Panel.ZIndex="3" x:Name="btnMultiRollNine" Grid.Column="4" Click="BtnMultiRoll_Click">
+                <Grid x:Name="btnMultiRollNineChips"/>
+            </Button>
+            <Button Background="Transparent" BorderThickness="0" Opacity="0.3" Panel.ZIndex="3" x:Name="btnMultiRollTen" Grid.Column="5" Click="BtnMultiRoll_Click">
+                <Grid x:Name="btnMultiRollTenChips"/>  
+            </Button>
+
+            <Button Background="Transparent" BorderThickness="0" Opacity="0.3" x:Name="btnPassLine" Panel.ZIndex="3" Grid.ColumnSpan="6" Grid.Row="4" Click="BtnMultiRoll_Click">
+                <Grid x:Name="btnPassLineChips"/>
+            </Button>
+            <Button Background="Transparent" BorderThickness="0" Opacity="0.3" x:Name="btnDontPassBar" Panel.ZIndex="3" Grid.ColumnSpan="6" Grid.Row="3" Click="BtnMultiRoll_Click">
+                <Grid x:Name="btnDontPassLineChips"/>
+            </Button>
+            <Button Background="Transparent" BorderThickness="0" Opacity="0.3" x:Name="btnField" Panel.ZIndex="3" Grid.ColumnSpan="6" Grid.Row="2" Click="SingleRollBet_Click">
+                <Grid x:Name="btnFieldChips"/>
+            </Button>
+        </Grid>
+        <Label x:Name="asdf"  Content="Label" HorizontalAlignment="Left" Margin="38,220,0,0" VerticalAlignment="Top" Height="52" Width="88" FontSize="30"/>
+    </Grid>
+</Window>

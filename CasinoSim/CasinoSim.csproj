@@ -1,0 +1,107 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="files\resources\CasinoAssets\Overall UI\**" />
+    <EmbeddedResource Remove="files\resources\CasinoAssets\Overall UI\**" />
+    <None Remove="files\resources\CasinoAssets\Overall UI\**" />
+    <Page Remove="files\resources\CasinoAssets\Overall UI\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="files\resources\ArrowDown.png" />
+    <None Remove="files\resources\bj.png" />
+    <None Remove="files\resources\CasinoAssets\BlackJack\BlackJackTable.png" />
+    <None Remove="files\resources\CasinoAssets\BlackJack\Cards\cardBack_blue4.png" />
+    <None Remove="files\resources\CasinoAssets\Craps\CrapsBoard.png" />
+    <None Remove="files\resources\CasinoAssets\Craps\Dice1.png" />
+    <None Remove="files\resources\CasinoAssets\Craps\Dice2.png" />
+    <None Remove="files\resources\CasinoAssets\Craps\Dice3.png" />
+    <None Remove="files\resources\CasinoAssets\Craps\Dice4.png" />
+    <None Remove="files\resources\CasinoAssets\Craps\Dice5.png" />
+    <None Remove="files\resources\CasinoAssets\Craps\Dice6.png" />
+    <None Remove="files\resources\CasinoAssets\UI\Chip1.png" />
+    <None Remove="files\resources\CasinoAssets\UI\Chip10.png" />
+    <None Remove="files\resources\CasinoAssets\UI\Chip100.png" />
+    <None Remove="files\resources\CasinoAssets\UI\Chip1000.png" />
+    <None Remove="files\resources\CasinoAssets\UI\Chip20.png" />
+    <None Remove="files\resources\CasinoAssets\UI\Chip5.png" />
+    <None Remove="files\resources\CasinoAssets\UI\Chip50.png" />
+    <None Remove="files\resources\CasinoAssets\UI\Chip500.png" />
+    <None Remove="files\resources\CasinoAssets\UI\Chip5000.png" />
+    <None Remove="files\resources\Chip1.png" />
+    <None Remove="files\resources\Chip10.png" />
+    <None Remove="files\resources\Chip100.png" />
+    <None Remove="files\resources\Chip1000.png" />
+    <None Remove="files\resources\Chip20.png" />
+    <None Remove="files\resources\Chip5.png" />
+    <None Remove="files\resources\Chip50.png" />
+    <None Remove="files\resources\Chip500.png" />
+    <None Remove="files\resources\Chip5000.png" />
+    <None Remove="files\resources\craps.png" />
+    <None Remove="files\resources\main.jpeg" />
+    <None Remove="files\resources\mainicon.png" />
+    <None Remove="files\resources\poker.png" />
+    <None Remove="files\resources\roul.png" />
+    <None Remove="files\resources\slot.png" />
+    <None Remove="main.jpeg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="files\resources\ArrowDown.png" />
+    <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\cardBack_blue4.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="files\resources\CasinoAssets\BlackJack\BlackJackTable.png" />
+    <Resource Include="files\resources\CasinoAssets\Craps\Dice1.png" />
+    <Resource Include="files\resources\CasinoAssets\Craps\Dice2.png" />
+    <Resource Include="files\resources\CasinoAssets\Craps\Dice3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="files\resources\CasinoAssets\Craps\Dice4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="files\resources\CasinoAssets\Craps\Dice5.png" />
+    <Resource Include="files\resources\CasinoAssets\Craps\Dice6.png" />
+    <Resource Include="files\resources\CasinoAssets\UI\Chip1.png" />
+    <Resource Include="files\resources\CasinoAssets\UI\Chip10.png" />
+    <Resource Include="files\resources\CasinoAssets\UI\Chip100.png" />
+    <Resource Include="files\resources\CasinoAssets\UI\Chip1000.png" />
+    <Resource Include="files\resources\CasinoAssets\UI\Chip20.png" />
+    <Resource Include="files\resources\CasinoAssets\UI\Chip5.png" />
+    <Resource Include="files\resources\CasinoAssets\UI\Chip50.png" />
+    <Resource Include="files\resources\CasinoAssets\UI\Chip500.png" />
+    <Resource Include="files\resources\CasinoAssets\UI\Chip5000.png" />
+    <Resource Include="files\resources\Chip10.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="files\resources\bj.png" />
+    <Resource Include="files\resources\CasinoAssets\Craps\CrapsBoard.png" />
+    <Resource Include="files\resources\Chip1.png" />
+    <Resource Include="files\resources\Chip100.png" />
+    <Resource Include="files\resources\Chip1000.png" />
+    <Resource Include="files\resources\Chip20.png" />
+    <Resource Include="files\resources\Chip5.png" />
+    <Resource Include="files\resources\Chip50.png" />
+    <Resource Include="files\resources\Chip500.png" />
+    <Resource Include="files\resources\Chip5000.png" />
+    <Resource Include="files\resources\craps.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="files\resources\main.jpeg" />
+    <Resource Include="files\resources\mainicon.png" />
+    <Resource Include="files\resources\poker.png" />
+    <Resource Include="files\resources\roul.png" />
+    <Resource Include="files\resources\slot.png" />
+    <Resource Include="main.jpeg" />
+  </ItemGroup>
+
+</Project>
