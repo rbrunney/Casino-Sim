@@ -325,6 +325,7 @@
     <Resource Include="files\resources\CasinoAssets\BlackJack\Cards\QS.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <None Remove="playerInfo.txt" />
   </ItemGroup>
 
   <ItemGroup>

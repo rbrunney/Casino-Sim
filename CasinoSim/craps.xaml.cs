@@ -50,10 +50,13 @@ namespace CasinoSim
     }
     public partial class Craps : Window
     {
+        PlayerInfo playerInfo;
         public Craps()
         {
             InitializeComponent();
             insertLists();
+            playerInfo = new PlayerInfo();
+            lblPlayerChips.Content = $"Chips:${playerInfo.ChipAmount}";
         }
         public int point = 0;
         //goes back to game selection

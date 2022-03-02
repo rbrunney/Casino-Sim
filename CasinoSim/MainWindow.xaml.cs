@@ -23,6 +23,7 @@ namespace CasinoSim
         public MainWindow()
         {
             InitializeComponent();
+            PlayerInfo player = new PlayerInfo();
         }
 
         private void moreButton_Copy_Click(object sender, RoutedEventArgs e)

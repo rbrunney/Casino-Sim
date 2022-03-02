@@ -29,11 +29,16 @@ namespace CasinoSim
         bool chip1000 = false;
         bool chip5000 = false;
 
+        PlayerInfo playerInfo;
+
         List<bool> chipsList = new List<bool>();
         public roul()
         {
             InitializeComponent();
             addButtons();
+            
+            playerInfo = new PlayerInfo();
+            lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
         }
 
 

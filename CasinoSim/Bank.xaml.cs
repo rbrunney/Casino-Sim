@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,18 +22,25 @@ namespace CasinoSim
     {
         
         int chips = 0;
-        int bank = 15000;
+        int bank = 0;
         string labelchip;
         string labelbank;
+
+        PlayerInfo playerInfo;
      
         public Bank()
         {
             InitializeComponent();
+            playerInfo = new PlayerInfo();
             labelchip = chipsBal.Content.ToString();
             labelbank = bankBal.Content.ToString() ;
 
-            chipsBal.Content += " "+ chips;
-            bankBal.Content += " " + bank;
+            chips = playerInfo.ChipAmount;
+            bank = playerInfo.BankAmount;
+
+            chipsBal.Content += " "+ playerInfo.ChipAmount;
+            bankBal.Content += " " + playerInfo.BankAmount;
+           
         }
         //back to game selection
         private void backButton_Click(object sender, RoutedEventArgs e)
@@ -71,6 +79,10 @@ namespace CasinoSim
             chipsBal.Content = labelchip+" " + chips;
             bankBal.Content = labelbank + " " + bank;
 
+            playerInfo.BankAmount = bank;
+            playerInfo.ChipAmount = chips;
+            File.WriteAllText("playerInfo.txt", $"{bank}:{chips}");
+
             MessageBox.Show("Deposit complete");
 
         }
@@ -102,6 +114,10 @@ namespace CasinoSim
                     bankBal.Foreground = System.Windows.Media.Brushes.White;
                 }
                 bankBal.Content = labelbank + " " + bank;
+
+                playerInfo.BankAmount = bank;
+                playerInfo.ChipAmount = chips;
+                File.WriteAllText("playerInfo.txt", $"{bank}:{chips}");
                 MessageBox.Show(" Withdraw complete");
 
             }

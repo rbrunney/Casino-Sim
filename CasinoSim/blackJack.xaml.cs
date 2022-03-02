@@ -46,6 +46,8 @@ namespace CasinoSim
         Player player = new Player();
         Player dealer = new Player();
         Image img;
+
+        private PlayerInfo playerInfo;
         public blackJack()
         {
             InitializeComponent();
@@ -60,6 +62,9 @@ namespace CasinoSim
             chipsList.Add(chip100);
             chipsList.Add(chip1000);
             chipsList.Add(chip5000);
+
+            playerInfo = new PlayerInfo();
+            lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
 
 
             //foreach (Card card in deck.cards)
