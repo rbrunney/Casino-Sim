@@ -80,7 +80,7 @@ namespace CasinoSim
 
         private List<Button> getSingleRollBets()
         {
-            List<Button> betList = new();
+            List<Button> betList = new List<Button>();
             betList.Add(btnSingleCraps);
             betList.Add(btnTwoSingleRoll);
             betList.Add(btnThreeSingleRoll);
@@ -98,7 +98,7 @@ namespace CasinoSim
 
         private List<Grid> getSingleRollBetGrids() 
         {
-            List<Grid> gridList = new();
+            List<Grid> gridList = new List<Grid>();
             gridList.Add(btnSingleRollThreeChips);
             gridList.Add(btnSingleRollTwoChips);
             gridList.Add(btnSingleRollElevenChips);
@@ -117,7 +117,7 @@ namespace CasinoSim
 
         private List<Grid> getMultiRollBetGrids()
         {
-            List<Grid> gridList = new();
+            List<Grid> gridList = new List<Grid>();
 
             gridList.Add(btnMultiRollFourChips);
             gridList.Add(btnMultiRollFiveChips);
@@ -133,7 +133,7 @@ namespace CasinoSim
 
         private List<Button> getMultiRollBets()
         {
-            List<Button> betList = new();
+            List<Button> betList = new List<Button>();
             betList.Add(btnDontPassBar);
             betList.Add(btnPassLine);
             betList.Add(btnMultiRollFour);
@@ -283,9 +283,9 @@ namespace CasinoSim
         }
 
         //chip that is selected when the button is clicked
-        private List<BitmapImage> chipImage = new();
+        private List<BitmapImage> chipImage = new List<BitmapImage>();
         //chip value for the selected chip
-        private List<int> chipValue = new();
+        private List<int> chipValue = new List<int>();
 
         private BitmapImage addImage(Uri url)
         {
@@ -294,7 +294,7 @@ namespace CasinoSim
         }
         private void RollButton_Click(object sender, RoutedEventArgs e)
         {
-            Random random = new();
+            Random random = new Random();
             int roll1 = random.Next(1, 7);
             int roll2 = random.Next(1, 7);
             int[] rolls = { roll1, roll2 };
@@ -520,42 +520,42 @@ namespace CasinoSim
                     switch (i)
                     {
                         case 0:
-                            BitmapImage image = new(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip1.png"));
+                            BitmapImage image = new BitmapImage(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip1.png"));
                             chipImage.Add(image);
                             chipValue.Add(1);
                             break;
                         case 1:
-                            image = new(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip5.png"));
+                            image = new BitmapImage(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip5.png"));
                             chipImage.Add(image);
                             chipValue.Add(5);
                             break;
                         case 2:
-                            image = new(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip10.png"));
+                            image = new BitmapImage(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip10.png"));
                             chipImage.Add(image);
                             chipValue.Add(10);
                             break;
                         case 3:
-                            image = new(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip50.png"));
+                            image = new BitmapImage(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip50.png"));
                             chipImage.Add(image);
                             chipValue.Add(50);
                             break;
                         case 4:
-                            image = new(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip100.png"));
+                            image = new BitmapImage(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip100.png"));
                             chipImage.Add(image);
                             chipValue.Add(100);
                             break;
                         case 5:
-                            image = new(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip500.png"));
+                            image = new BitmapImage(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip500.png"));
                             chipImage.Add(image);
                             chipValue.Add(500);
                             break;
                         case 6:
-                            image = new(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip1000.png"));
+                            image = new BitmapImage(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip1000.png"));
                             chipImage.Add(image);
                             chipValue.Add(1000);
                             break;
                         case 7:
-                            image = new(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip5000.png"));
+                            image = new BitmapImage(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip5000.png"));
                             chipImage.Add(image);
                             chipValue.Add(5000);
                             break;
@@ -567,17 +567,17 @@ namespace CasinoSim
         }
         
         //Lists that store all bets for single fields
-        private List<int> singleCraps = new();
-        private List<int> singleTwo = new();
-        private List<int> singleThree = new();
-        private List<int> singleSeven = new();
-        private List<int> singleEleven = new();
-        private List<int> singleTwelve = new();
-        private List<int> hardFour = new();
-        private List<int> hardSix = new();
-        private List<int> hardEight = new();
-        private List<int> hardTen = new();
-        private List<int> fieldBets = new();
+        private List<int> singleCraps = new List<int>();
+        private List<int> singleTwo = new List<int>();
+        private List<int> singleThree = new List<int>();
+        private List<int> singleSeven = new List<int>();
+        private List<int> singleEleven = new List<int>();
+        private List<int> singleTwelve = new List<int>();
+        private List<int> hardFour = new List<int>();
+        private List<int> hardSix = new List<int>();
+        private List<int> hardEight = new List<int>();
+        private List<int> hardTen = new List<int>();
+        private List<int> fieldBets = new List<int>();
 
         private Image addImageToBet(int chipValue, Grid grid)
         {
@@ -678,16 +678,16 @@ namespace CasinoSim
         }
 
         //Lists that store all bets for multifields
-        private List<int> dontPassBets = new();
-        private List<int> passLineBets = new();
-        private List<int> fourBets = new();
-        private List<int> fiveBets = new();
-        private List<int> sixBets = new();
-        private List<int> eightBets = new();
-        private List<int> nineBets = new();
-        private List<int> tenBets = new();
+        private List<int> dontPassBets = new List<int>();
+        private List<int> passLineBets = new List<int>();
+        private List<int> fourBets = new List<int>();
+        private List<int> fiveBets = new List<int>();
+        private List<int> sixBets = new List<int>();
+        private List<int> eightBets = new List<int>();
+        private List<int> nineBets = new List<int>();
+        private List<int> tenBets = new List<int>();
 
-        private Dictionary<string, List<int>> bets = new();
+        private Dictionary<string, List<int>> bets = new Dictionary<string, List<int>>();
         private void insertLists()
         {
             bets.Add("Single Craps", singleCraps);
