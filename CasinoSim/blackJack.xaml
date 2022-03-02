@@ -59,17 +59,17 @@
         <Image Source="files/resources/bj.png" Panel.ZIndex="2" HorizontalAlignment="Left" Width="125" Margin="10,-5,0,338"/>
         <Image Source="files/resources/CasinoAssets/BlackJack/BlackJackTable.png" Panel.ZIndex="2" HorizontalAlignment="Left" Width="498" Margin="164,45,0,124" Stretch="Fill"/>
         <Image Source="files/resources/CasinoAssets/BlackJack/Cards/cardBack_blue4.png" Panel.ZIndex="2" HorizontalAlignment="Left" Width="38" Margin="594,48.5,0,321" Stretch="Fill"/>
-        <Image x:Name="dealerImage1" Panel.ZIndex="2" Margin="354,58,400,322" Stretch="Fill"/>
-        <Image x:Name="dealerImage2" Panel.ZIndex="3" Margin="374,58,380,322" Stretch="Fill"/>
-        <Image x:Name="dealerImage3" Panel.ZIndex="4" Margin="394,58,360,322" Stretch="Fill"/>
-        <Image x:Name="dealerImage4" Panel.ZIndex="5" Margin="414,58,340,322" Stretch="Fill"/>
-        <Image x:Name="dealerImage5" Panel.ZIndex="6" Margin="434,58,320,322" Stretch="Fill"/>
-        <Image x:Name="dealerImage6" Panel.ZIndex="7" Margin="454,58,300,322" Stretch="Fill"/>
-        <Image x:Name="dealerImage7" Panel.ZIndex="8" Margin="474,58,280,322" Stretch="Fill"/>
-        <Image x:Name="dealerImage8" Panel.ZIndex="9" Margin="494,58,260,322" Stretch="Fill"/>
-        <Image x:Name="dealerImage9" Panel.ZIndex="10" Margin="514,58,240,322" Stretch="Fill"/>
-        <Image x:Name="dealerImage10" Panel.ZIndex="11" Margin="534,58,220,322" Stretch="Fill"/>
-        <Image x:Name="dealerImage11" Panel.ZIndex="12" Margin="554,58,200,322" Stretch="Fill"/>
+        <Image x:Name="dealerImage1" Panel.ZIndex="2" Margin="344,58,410,322" Stretch="Fill"/>
+        <Image x:Name="dealerImage2" Panel.ZIndex="3" Margin="364,58,390,322" Stretch="Fill"/>
+        <Image x:Name="dealerImage3" Panel.ZIndex="4" Margin="384,58,370,322" Stretch="Fill"/>
+        <Image x:Name="dealerImage4" Panel.ZIndex="5" Margin="404,58,350,322" Stretch="Fill"/>
+        <Image x:Name="dealerImage5" Panel.ZIndex="6" Margin="424,58,330,322" Stretch="Fill"/>
+        <Image x:Name="dealerImage6" Panel.ZIndex="7" Margin="444,58,310,322" Stretch="Fill"/>
+        <Image x:Name="dealerImage7" Panel.ZIndex="8" Margin="464,58,290,322" Stretch="Fill"/>
+        <Image x:Name="dealerImage8" Panel.ZIndex="9" Margin="484,58,270,322" Stretch="Fill"/>
+        <Image x:Name="dealerImage9" Panel.ZIndex="10" Margin="504,58,250,322" Stretch="Fill"/>
+        <Image x:Name="dealerImage10" Panel.ZIndex="11" Margin="524,58,230,322" Stretch="Fill"/>
+        <Image x:Name="dealerImage11" Panel.ZIndex="12" Margin="544,58,210,322" Stretch="Fill"/>
 
         <Image x:Name="playerImage1" Panel.ZIndex="2" Margin="354,258,400,127" Stretch="Fill"/>
         <Image x:Name="playerImage2" Panel.ZIndex="3" Margin="374,258,380,127" Stretch="Fill"/>
