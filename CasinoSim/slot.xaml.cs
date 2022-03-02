@@ -30,10 +30,10 @@ namespace CasinoSim
             this.Hide();
             new Window1().Show();
         }
-        private Dictionary<string, List<BitmapImage>> Slots = new();
-        private List<BitmapImage> leftColumn = new();
-        private List<BitmapImage> rightColumn = new();
-        private List<BitmapImage> middleColumn = new();
+        private Dictionary<string, List<BitmapImage>> Slots = new Dictionary<string, List<BitmapImage>>();
+        private List<BitmapImage> leftColumn = new List<BitmapImage>();
+        private List<BitmapImage> rightColumn = new List<BitmapImage>();
+        private List<BitmapImage> middleColumn = new List<BitmapImage>();
 
         private void spin(object sender, RoutedEventArgs e)
         {
@@ -46,10 +46,10 @@ namespace CasinoSim
 
         private void PopulateLists()
         {
-            BitmapImage cherry = new(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/Slots/Wheel - Cherry.png"));
-            BitmapImage seven = new(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/Slots/Wheel - Seven.png"));
-            BitmapImage bars = new(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/Slots/Wheel - Bars.png"));
-            BitmapImage bells = new(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/Slots/Wheel - Bell.png"));
+            BitmapImage cherry = new BitmapImage(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/Slots/Wheel - Cherry.png"));
+            BitmapImage seven = new BitmapImage(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/Slots/Wheel - Seven.png"));
+            BitmapImage bars = new BitmapImage(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/Slots/Wheel - Bars.png"));
+            BitmapImage bells = new BitmapImage(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/Slots/Wheel - Bell.png"));
 
             leftColumn.Add(cherry);
             leftColumn.Add(seven);
@@ -87,10 +87,10 @@ namespace CasinoSim
 
         private void Spin(object sender, RoutedEventArgs e)
         {
-            Random random = new();
-            Image leftImage = new();
-            Image rightImage = new();
-            Image middleImage = new();
+            Random random = new Random();
+            Image leftImage = new Image();
+            Image rightImage = new Image();
+            Image middleImage = new Image();
             for(int i = 0; i < Slots.Count; i++)
             {
                 switch(i)
