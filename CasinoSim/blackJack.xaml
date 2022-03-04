@@ -59,11 +59,11 @@
         <Image Source="files/resources/bj.png" Panel.ZIndex="2" HorizontalAlignment="Left" Width="125" Margin="10,-5,0,338"/>
         <Image Source="files/resources/CasinoAssets/BlackJack/BlackJackTable.png" Panel.ZIndex="2" HorizontalAlignment="Left" Width="498" Margin="164,45,0,124" Stretch="Fill"/>
         <Image Source="files/resources/CasinoAssets/BlackJack/Cards/cardBack_blue4.png" Panel.ZIndex="2" HorizontalAlignment="Left" Width="38" Margin="594,48.5,0,321" Stretch="Fill"/>
-        <Image x:Name="dealerImage1" Panel.ZIndex="2" Margin="340,60,410,280" Stretch="UniformToFill"/>
-        <Image x:Name="dealerImage2" Panel.ZIndex="3" Margin="360,60,390,280" Stretch="UniformToFill"/>
-        <Image x:Name="dealerImage3" Panel.ZIndex="4" Margin="380,60,370,280" Stretch="UniformToFill"/>
-        <Image x:Name="dealerImage4" Panel.ZIndex="5" Margin="400,60,350,280" Stretch="UniformToFill"/>
-        <Image x:Name="dealerImage5" Panel.ZIndex="6" Margin="420,60,330,280" Stretch="UniformToFill"/>
+        <Image x:Name="dealerImage1" Panel.ZIndex="2" Margin="340,60,390,280" Stretch="UniformToFill"/>
+        <Image x:Name="dealerImage2" Panel.ZIndex="3" Margin="360,60,370,280" Stretch="UniformToFill"/>
+        <Image x:Name="dealerImage3" Panel.ZIndex="4" Margin="380,60,350,280" Stretch="UniformToFill"/>
+        <Image x:Name="dealerImage4" Panel.ZIndex="5" Margin="400,60,330,280" Stretch="UniformToFill"/>
+        <Image x:Name="dealerImage5" Panel.ZIndex="6" Margin="420,60,310,280" Stretch="UniformToFill"/>
 
         <Image x:Name="playerImage1" Panel.ZIndex="2" Margin="350,220,380,120" Stretch="UniformToFill"/>
         <Image x:Name="playerImage2" Panel.ZIndex="3" Margin="370,220,360,120" Stretch="UniformToFill"/>
@@ -72,9 +72,9 @@
         <Image x:Name="playerImage5" Panel.ZIndex="6" Margin="430,220,300,120" Stretch="UniformToFill"/>
 
         <!--NEED TO MAKE 8 IMAGE HOLDERS FOR CHIPS-->
+        <Label Content="{DynamicResource winLabel}" FontSize="20" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" Margin="340,300,0,0" VerticalAlignment="Top"/>
         <Button x:Name="backButton" Panel.ZIndex="2" BorderBrush="Black" BorderThickness="2"   Content="EXIT" HorizontalAlignment="Left" Margin="28,0,0,20" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" Height="40" Width="131" Background="#FFFFCD07" FontFamily="Playbill" FontSize="36" Padding="2px" Click="backButton_Click" />
         <Button x:Name="dealButton"  Panel.ZIndex="2" Content="DEAL" BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Right" Margin="0,0,28,20" VerticalAlignment="Bottom" RenderTransformOrigin="-8.17,6.078" Height="40" Width="131" Background="#FFFFCD07" FontFamily="Playbill" FontSize="36" Padding="2px" Click="dealButton_Click" Visibility="Hidden" />
-        <Label x:Name="gameLabel" Panel.ZIndex="3" Content="Hello" FontSize="20" Foreground="White" HorizontalAlignment="Center" Margin="200, 320, 200, 90"/>
         <Grid  Margin="164,348,167,10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50" />
