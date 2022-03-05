@@ -48,11 +48,11 @@ namespace CasinoSim
             new Craps().Show();
         }
 
-        private void Button_Click_4(object sender, RoutedEventArgs e)
-        {
-            this.Hide();
-            new slot().Show();
-        }
+        // private void Button_Click_4(object sender, RoutedEventArgs e)
+        // {
+        //     this.Hide();
+        //     new slot().Show();
+        // }
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {

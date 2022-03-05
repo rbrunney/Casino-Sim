@@ -22,7 +22,8 @@
         <Button Panel.ZIndex="2" HorizontalAlignment="Left" Width="160px" Margin="216,239,0,71"  Background="Transparent" BorderThickness="0" Click="Button_Click_3">
             <Image Source="files/resources/craps.png" />
         </Button>
-        <Button Panel.ZIndex="2" HorizontalAlignment="Left" Width="160px" Margin="456,229,0,69"  Background="Transparent" BorderThickness="0" Click="Button_Click_4">
+        <Image Source="../files/resources/CasinoAssets/UI/ComingSoonStamp.png" Panel.ZIndex="5" Height="55" Width="175" Margin="265, 175, 0, 0"/>
+        <Button Opacity="0.75" Panel.ZIndex="2" HorizontalAlignment="Left" Width="160px" Margin="456,229,0,69"  Background="Transparent" BorderThickness="0">
             <Image Source="files/resources/slot.png" />
         </Button>
         <Button Panel.ZIndex="2" HorizontalAlignment="Left" Width="160px" Margin="578,120,0,210"  Background="Transparent"  BorderThickness="0" Click="Button_Click_2">
