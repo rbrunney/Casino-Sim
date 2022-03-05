@@ -59,31 +59,20 @@
         <Image Source="files/resources/bj.png" Panel.ZIndex="2" HorizontalAlignment="Left" Width="125" Margin="10,-5,0,338"/>
         <Image Source="files/resources/CasinoAssets/BlackJack/BlackJackTable.png" Panel.ZIndex="2" HorizontalAlignment="Left" Width="498" Margin="164,45,0,124" Stretch="Fill"/>
         <Image Source="files/resources/CasinoAssets/BlackJack/Cards/cardBack_blue4.png" Panel.ZIndex="2" HorizontalAlignment="Left" Width="38" Margin="594,48.5,0,321" Stretch="Fill"/>
-        <Image x:Name="dealerImage1" Panel.ZIndex="2" Margin="344,58,410,322" Stretch="Fill"/>
-        <Image x:Name="dealerImage2" Panel.ZIndex="3" Margin="364,58,390,322" Stretch="Fill"/>
-        <Image x:Name="dealerImage3" Panel.ZIndex="4" Margin="384,58,370,322" Stretch="Fill"/>
-        <Image x:Name="dealerImage4" Panel.ZIndex="5" Margin="404,58,350,322" Stretch="Fill"/>
-        <Image x:Name="dealerImage5" Panel.ZIndex="6" Margin="424,58,330,322" Stretch="Fill"/>
-        <Image x:Name="dealerImage6" Panel.ZIndex="7" Margin="444,58,310,322" Stretch="Fill"/>
-        <Image x:Name="dealerImage7" Panel.ZIndex="8" Margin="464,58,290,322" Stretch="Fill"/>
-        <Image x:Name="dealerImage8" Panel.ZIndex="9" Margin="484,58,270,322" Stretch="Fill"/>
-        <Image x:Name="dealerImage9" Panel.ZIndex="10" Margin="504,58,250,322" Stretch="Fill"/>
-        <Image x:Name="dealerImage10" Panel.ZIndex="11" Margin="524,58,230,322" Stretch="Fill"/>
-        <Image x:Name="dealerImage11" Panel.ZIndex="12" Margin="544,58,210,322" Stretch="Fill"/>
+        <Image x:Name="dealerImage1" Panel.ZIndex="2" Margin="340,60,390,280" Stretch="UniformToFill"/>
+        <Image x:Name="dealerImage2" Panel.ZIndex="3" Margin="360,60,370,280" Stretch="UniformToFill"/>
+        <Image x:Name="dealerImage3" Panel.ZIndex="4" Margin="380,60,350,280" Stretch="UniformToFill"/>
+        <Image x:Name="dealerImage4" Panel.ZIndex="5" Margin="400,60,330,280" Stretch="UniformToFill"/>
+        <Image x:Name="dealerImage5" Panel.ZIndex="6" Margin="420,60,310,280" Stretch="UniformToFill"/>
 
-        <Image x:Name="playerImage1" Panel.ZIndex="2" Margin="354,258,400,127" Stretch="Fill"/>
-        <Image x:Name="playerImage2" Panel.ZIndex="3" Margin="374,258,380,127" Stretch="Fill"/>
-        <Image x:Name="playerImage3" Panel.ZIndex="4" Margin="394,258,360,127" Stretch="Fill"/>
-        <Image x:Name="playerImage4" Panel.ZIndex="5" Margin="414,258,340,127" Stretch="Fill"/>
-        <Image x:Name="playerImage5" Panel.ZIndex="6" Margin="434,258,320,127" Stretch="Fill"/>
-        <Image x:Name="playerImage6" Panel.ZIndex="7" Margin="454,258,300,127" Stretch="Fill"/>
-        <Image x:Name="playerImage7" Panel.ZIndex="8" Margin="474,258,280,127" Stretch="Fill"/>
-        <Image x:Name="playerImage8" Panel.ZIndex="9" Margin="494,258,260,127" Stretch="Fill"/>
-        <Image x:Name="playerImage9" Panel.ZIndex="10" Margin="514,258,240,127" Stretch="Fill"/>
-        <Image x:Name="playerImage10" Panel.ZIndex="11" Margin="534,258,220,127" Stretch="Fill"/>
-        <Image x:Name="playerImage11" Panel.ZIndex="12" Margin="554,258,200,127" Stretch="Fill"/>
+        <Image x:Name="playerImage1" Panel.ZIndex="2" Margin="350,220,380,120" Stretch="UniformToFill"/>
+        <Image x:Name="playerImage2" Panel.ZIndex="3" Margin="370,220,360,120" Stretch="UniformToFill"/>
+        <Image x:Name="playerImage3" Panel.ZIndex="4" Margin="390,220,340,120" Stretch="UniformToFill"/>
+        <Image x:Name="playerImage4" Panel.ZIndex="5" Margin="410,220,320,120" Stretch="UniformToFill"/>
+        <Image x:Name="playerImage5" Panel.ZIndex="6" Margin="430,220,300,120" Stretch="UniformToFill"/>
 
         <!--NEED TO MAKE 8 IMAGE HOLDERS FOR CHIPS-->
+        <Label Content="{DynamicResource winLabel}" FontSize="20" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" Margin="340,300,0,0" VerticalAlignment="Top"/>
         <Button x:Name="backButton" Panel.ZIndex="2" BorderBrush="Black" BorderThickness="2"   Content="EXIT" HorizontalAlignment="Left" Margin="28,0,0,20" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" Height="40" Width="131" Background="#FFFFCD07" FontFamily="Playbill" FontSize="36" Padding="2px" Click="backButton_Click" />
         <Button x:Name="dealButton"  Panel.ZIndex="2" Content="DEAL" BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Right" Margin="0,0,28,20" VerticalAlignment="Bottom" RenderTransformOrigin="-8.17,6.078" Height="40" Width="131" Background="#FFFFCD07" FontFamily="Playbill" FontSize="36" Padding="2px" Click="dealButton_Click" Visibility="Hidden" />
         <Grid  Margin="164,348,167,10">

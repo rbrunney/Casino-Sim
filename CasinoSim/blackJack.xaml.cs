@@ -28,17 +28,10 @@ namespace CasinoSim
         bool chip100 = false;
         bool chip1000 = false;
         bool chip5000 = false;
-
-        bool playerBlackJack;
-        bool playerBust;
+        
         bool playerWin;
-        bool dealerBlackJack;
-        bool dealerBust;
         bool dealerWin;
         bool gameDraw;
-        bool gameEnd;
-        bool player5Cards;
-        bool dealer5Cards;
 
         List<bool> chipsList = new List<bool>();
 
@@ -62,6 +55,8 @@ namespace CasinoSim
             chipsList.Add(chip100);
             chipsList.Add(chip1000);
             chipsList.Add(chip5000);
+
+            Resources["winLabel"] = "";
 
             playerInfo = new PlayerInfo();
             lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
@@ -109,33 +104,34 @@ namespace CasinoSim
             playerImage2.Source = player.hand[1].image.Source;
             //img.Source = new BitmapImage(new Uri("files/resources/CasinoAssets/BlackJack/cardBack_blue1.png"));
             //dealerImage1.Source = img.Source;
-            dealer.hand[0].image.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/BlackJack/Cards/cardBack_blue1.png"));
-            dealerImage1.Source = dealer.hand[0].image.Source;
+            dealerImage1.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/BlackJack/Cards/cardBack_blue1.png"));
             dealerImage2.Source = dealer.hand[1].image.Source;
         }
         
         public void restart()
         {
+            Resources["winLabel"] = "";
             player.hand.Clear();
             dealer.hand.Clear();
             player.value = 0;
             dealer.value = 0;
+            
             playerImage1.Source = null;
             playerImage2.Source = null;
             playerImage3.Source = null;
             playerImage4.Source = null;
             playerImage5.Source = null;
             
-            playerBlackJack = false;
-            playerBust = false;
+            dealerImage1.Source = null;
+            dealerImage2.Source = null;
+            dealerImage3.Source = null;
+            dealerImage4.Source = null;
+            dealerImage5.Source = null;
+            
+            
             playerWin = false;
-            dealerBlackJack = false;
-            dealerBust = false;
             dealerWin = false;
-            player5Cards = false;
-            dealer5Cards = false;
             gameDraw = false;
-            gameEnd = false;
             
             deck = new Deck(true);
             dealButton.Visibility = Visibility.Hidden;
@@ -209,6 +205,7 @@ namespace CasinoSim
             while(dealer.value < 16)
             {
                 dealer.hand.Add(deck.drawCard());
+                dealer.value = 0;
                 foreach (Card card in dealer.hand)
                 {
                     dealer.value += card.Value;
@@ -226,7 +223,6 @@ namespace CasinoSim
                 if (dealer.hand.Count == 5)
                 {
                     dealerImage5.Source = dealer.hand[4].image.Source;
-                    dealer5Cards = true;
                     checkWin();
                 }
             }
@@ -253,7 +249,6 @@ namespace CasinoSim
             if (player.hand.Count == 5)
             {
                 playerImage5.Source = player.hand[4].image.Source;
-                player5Cards = true;
                 checkWin();
             }
             if(player.value >= 21)
@@ -264,72 +259,71 @@ namespace CasinoSim
 
         public void checkWin()
         {
+            dealerImage1.Source = dealer.hand[0].image.Source;
             if (player.value == 21)
             {
-                playerBlackJack = true;
-                gameEnd = true;
+                playerWin = true;
             }
             else if (player.value > dealer.value && player.value < 21)
             {
                 playerWin = true;
-                gameEnd = true;
             }
             else if (player.value > 21)
             {
-                playerBust = true;
                 dealerWin = true;
-                gameEnd = true;
             }
             else if (dealer.value == 21)
             {
-                dealerBlackJack = true;
-                gameEnd = true;
+                dealerWin = true;
             }
             else if (dealer.value > player.value && dealer.value < 21)
             {
                 dealerWin = true;
-                gameEnd = true;
             }
             else if (dealer.value > 21)
             {
-                dealerBust = true;
                 playerWin = true;
-                gameEnd = true;
             }
             else if (dealer.value == player.value)
             {
                 gameDraw = true;
-                gameEnd = true;
             }
             else if (dealer.hand.Count == 5)
             {
-                dealer5Cards = true;
                 playerWin = true;
-                gameEnd = true;
             }
             else if (player.hand.Count == 5)
             {
-                player5Cards = true;
                 dealerWin = true;
-                gameEnd = true;
             }
             
-            MessageBox.Show($"Player BlackJack: {playerBlackJack} \n" +
-                $"Player Win: {playerWin} \n" +
-                $"Player Bust: {playerBust} \n" +
-                $"Dealer BlackJack: {dealerBlackJack} \n" +
-                $"Dealer Win: {dealerWin} \n" +
-                $"Dealer Bust: {dealerBust} \n" +
-                $"Player5Cards: {player5Cards} \n" +
-                $"Dealer5Cards: {dealer5Cards} \n" +
-                $"Player: {player.value} : {player.handToString()} \n " +
-                $"Dealer: {dealer.value} : {dealer.handToString()} \n");
-            if (gameEnd)
+            //MessageBox.Show($"Player BlackJack: {playerBlackJack} \n" +
+            //    $"Player Win: {playerWin} \n" +
+            //    $"Player Bust: {playerBust} \n" +
+            //    $"Dealer BlackJack: {dealerBlackJack} \n" +
+            //    $"Dealer Win: {dealerWin} \n" +
+            //    $"Dealer Bust: {dealerBust} \n" +
+            //    $"Player5Cards: {player5Cards} \n" +
+            //    $"Dealer5Cards: {dealer5Cards} \n" +
+            //    $"Player: {player.value} : {player.handToString()} \n " +
+            //    $"Dealer: {dealer.value} : {dealer.handToString()} \n");
+            if (playerWin)
             {
-                dealButton.Visibility = Visibility.Visible;
-                hitButton.Visibility = Visibility.Hidden;
-                standButton.Visibility = Visibility.Hidden;
+                Resources["winLabel"] = $"Player Wins! \n PlayerHand: {player.value} -- DealerHand: {dealer.value}";
             }
+
+            if (dealerWin)
+            {
+                Resources["winLabel"] = $"Dealer Wins! \n PlayerHand: {player.value} -- DealerHand: {dealer.value}";
+            }
+
+            if (gameDraw)
+            {
+                Resources["winLabel"] = $"Draw! \n PlayerHand: {player.value} -- DealerHand: {dealer.value}";
+            }
+            dealButton.Visibility = Visibility.Visible;
+            hitButton.Visibility = Visibility.Hidden;
+            standButton.Visibility = Visibility.Hidden;
         }
     }
 
