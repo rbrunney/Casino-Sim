@@ -407,15 +407,18 @@ namespace CasinoSim
                     if(getBetListValues("Single Two") != 0)
                     {
                         winnings += getBetListValues("Single Two") + (30 * getBetListValues("Single Two"));
+                        playerInfo.ChipAmount +=winnings;
 
                     }
                     if(getBetListValues("Single Craps") != 0)
                     {
                         winnings += getBetListValues("Single Craps") + (7 * getBetListValues("Single Craps"));
+                        playerInfo.ChipAmount +=winnings;
                     }
                     if(getBetListValues("Field") != 0)
                     {
                         winnings += getBetListValues("Field") + (2 * getBetListValues("Field"));
+                        playerInfo.ChipAmount +=winnings;
                     }
 
                     break;
@@ -423,91 +426,112 @@ namespace CasinoSim
                     if(getBetListValues("Single Three") != 0)
                     {
                         winnings += getBetListValues("Single Three") + (15 * getBetListValues("Single Three"));
+                        playerInfo.ChipAmount +=winnings;
                     }
                     if(getBetListValues("Single Craps") != 0)
                     {
                         winnings += getBetListValues("Single Craps") + (7 * getBetListValues("Single Craps"));
+                        playerInfo.ChipAmount +=winnings;
                     }
                     if(getBetListValues("Field") != 0)
                     {
                         winnings += (2 * getBetListValues("Field"));
+                        playerInfo.ChipAmount +=winnings;
+                        
                     }
                     break;
                 case 4:
                     if(dice1.IsEqual(getDiceList()[1]) && dice2.IsEqual(getDiceList()[1]))
                     {
                         winnings += getBetListValues("Hard Four") + (7 * getBetListValues("Hard Four"));
+                        playerInfo.ChipAmount +=winnings;
                     }
                     if(getBetListValues("Field") != 0)
                     {
                         winnings += 2 * getBetListValues("Field");
+                        playerInfo.ChipAmount +=winnings;
                     }
                     break;
                 case 6:
                     if(dice1.IsEqual(getDiceList()[2]) && dice2.IsEqual(getDiceList()[2]))
                     {
                         winnings += getBetListValues("Hard Six") + (9 * getBetListValues("Hard Six"));
+                        playerInfo.ChipAmount +=winnings;
                     }
                     break;
                 case 7:
                     if(getBetListValues("Single Seven") != 0)
                     {
                         winnings += getBetListValues("Single Seven") + (4 * getBetListValues("Single Seven"));
+                        playerInfo.ChipAmount +=winnings;
                     }
                     break;
                 case 8:
                     if(dice1.IsEqual(getDiceList()[3]) && dice2.IsEqual(getDiceList()[3]))
                     {
                         winnings += getBetListValues("Hard Eight") + (9 * getBetListValues("Hard Eight"));
+                        playerInfo.ChipAmount +=winnings;
                     }
                     break;
                 case 9:
                     if(getBetListValues("Field") != 0)
                     {
                         winnings += (2 * getBetListValues("Field"));
+                        playerInfo.ChipAmount +=winnings;
                     }
                     break;
                 case 10:
                     if(dice1.IsEqual(getDiceList()[4]) && dice2.IsEqual(getDiceList()[4]))
                     {
                         winnings += getBetListValues("Hard Ten") + (7 * getBetListValues("Hard Ten"));
+                        playerInfo.ChipAmount +=winnings;
                     }
                     if(getBetListValues("Field") != 0)
                     {
                         winnings += 2 * getBetListValues("Field");
+                        playerInfo.ChipAmount +=winnings;
+                        
                     }
                     break;
                 case 11:
                     if(getBetListValues("Single Eleven") != 0)
                     {
                         winnings += getBetListValues("Single Eleven") + (15 * getBetListValues("Single Eleven"));
+                        playerInfo.ChipAmount +=winnings;
                     }
                     if(getBetListValues("Single Craps") != 0)
                     {
                         winnings += getBetListValues("Single Craps") + (7 * getBetListValues("Single Craps"));
+                        playerInfo.ChipAmount +=winnings;
                     }
                     if(getBetListValues("Field") != 0)
                     {
                         winnings += 2 * getBetListValues("Field");
+                        playerInfo.ChipAmount +=winnings;
                     }
                     break;
                 case 12:
                     if(getBetListValues("Single Twelve") != 0)
                     {
                         winnings += getBetListValues("Single Twelve") + (30 * getBetListValues("Single Twelve"));
+                        playerInfo.ChipAmount +=winnings;
                     }
                     if(getBetListValues("Single Craps") != 0)
                     {
                         winnings += getBetListValues("Single Craps") + (7 * getBetListValues("Single Craps"));
+                        playerInfo.ChipAmount +=winnings;
                     }
                     if(getBetListValues("Field") != 0)
                     {
                         winnings += getBetListValues("Field") + (3 * getBetListValues("Field"));
+                        playerInfo.ChipAmount +=winnings;
                     }
                     break;
                 default:
                     break;
             }
+
+            lblPlayerChips.Content = $"Chips:${playerInfo.ChipAmount}";
             removeSingleBets();
             return winnings;
         }
@@ -595,85 +619,102 @@ namespace CasinoSim
         {
             try
             {
-                for(int i = 0; i < getSingleRollBets().Count; i++)
+                if (playerInfo.ChipAmount >= chipValue[0])
                 {
-                    if(getSingleRollBets()[i].Equals((Button)sender))
+                    for (int i = 0; i < getSingleRollBets().Count; i++)
                     {
-                        switch(i)
+
+                        if (getSingleRollBets()[i].Equals((Button) sender))
                         {
-                            case 0:
-                                singleCraps.Add(chipValue[0]);
-                                btnSingleCraps.Opacity = 1;
-                                btnSingleCrapsChips.ColumnDefinitions.Add(new ColumnDefinition());
-                                btnSingleCrapsChips.Children.Add(addImageToBet(chipValue[0], btnSingleCrapsChips));
-                                break;
-                            case 1:
-                                singleTwo.Add(chipValue[0]);
-                                btnTwoSingleRoll.Opacity = 1;
-                                btnSingleRollTwoChips.ColumnDefinitions.Add(new ColumnDefinition());
-                                btnSingleRollTwoChips.Children.Add(addImageToBet(chipValue[0], btnSingleRollTwoChips));
-                                break;
-                            case 2:
-                                singleThree.Add(chipValue[0]);
-                                btnThreeSingleRoll.Opacity = 1;
-                                btnSingleRollThreeChips.ColumnDefinitions.Add(new ColumnDefinition());
-                                btnSingleRollThreeChips.Children.Add(addImageToBet(chipValue[0], btnSingleRollThreeChips));
-                                break;
-                            case 3:
-                                singleSeven.Add(chipValue[0]);
-                                btnSingleRollSeven.Opacity = 1;
-                                btnSingleRollSevenChips.ColumnDefinitions.Add(new ColumnDefinition());
-                                btnSingleRollSevenChips.Children.Add(addImageToBet(chipValue[0], btnSingleRollSevenChips));
-                                break;
-                            case 4:
-                                singleEleven.Add(chipValue[0]);
-                                btnElevenSingleRoll.Opacity = 1;
-                                btnSingleRollElevenChips.ColumnDefinitions.Add(new ColumnDefinition());
-                                btnSingleRollElevenChips.Children.Add(addImageToBet(chipValue[0], btnSingleRollElevenChips));
-                                break;
-                            case 5:
-                                singleTwelve.Add(chipValue[0]);
-                                btnTwelveSingleRoll.Opacity = 1;
-                                btnSingleRollTwelveChips.ColumnDefinitions.Add(new ColumnDefinition());
-                                btnSingleRollTwelveChips.Children.Add(addImageToBet(chipValue[0], btnSingleRollTwelveChips));
-                                break;
-                            case 6:
-                                hardFour.Add(chipValue[0]);
-                                btnHardwayFour7to1.Opacity = 1;
-                                btnHardwayFourChips.ColumnDefinitions.Add(new ColumnDefinition());
-                                btnHardwayFourChips.Children.Add(addImageToBet(chipValue[0], btnHardwayFourChips));
-                                break;
-                            case 7:
-                                hardSix.Add(chipValue[0]);
-                                btnHardwaySix9to1.Opacity = 1;
-                                btnHardwaySixChips.ColumnDefinitions.Add(new ColumnDefinition());
-                                btnHardwaySixChips.Children.Add(addImageToBet(chipValue[0], btnHardwaySixChips));
-                                break;
-                            case 8:
-                                hardEight.Add(chipValue[0]);
-                                btnHardwayeight9to1.Opacity = 1;
-                                btnHardwayEightChips.ColumnDefinitions.Add(new ColumnDefinition());
-                                btnHardwayEightChips.Children.Add(addImageToBet(chipValue[0], btnHardwayEightChips));
-                                break;
-                            case 9:
-                                hardTen.Add(chipValue[0]);
-                                btnHardwayten7to1.Opacity = 1;
-                                btnHardwayTenChips.ColumnDefinitions.Add(new ColumnDefinition());
-                                btnHardwayTenChips.Children.Add(addImageToBet(chipValue[0], btnHardwayTenChips));
-                                break;
-                            case 10:
-                                fieldBets.Add(chipValue[0]);
-                                btnField.Opacity = 1;
-                                btnFieldChips.ColumnDefinitions.Add(new ColumnDefinition());
-                                btnFieldChips.Children.Add(addImageToBet(chipValue[0], btnFieldChips));
-                                break;
-                            default:
-                                break;
+                            switch (i)
+                            {
+                                case 0:
+                                    singleCraps.Add(chipValue[0]);
+                                    btnSingleCraps.Opacity = 1;
+                                    btnSingleCrapsChips.ColumnDefinitions.Add(new ColumnDefinition());
+                                    btnSingleCrapsChips.Children.Add(addImageToBet(chipValue[0], btnSingleCrapsChips));
+                                    break;
+                                case 1:
+                                    singleTwo.Add(chipValue[0]);
+                                    btnTwoSingleRoll.Opacity = 1;
+                                    btnSingleRollTwoChips.ColumnDefinitions.Add(new ColumnDefinition());
+                                    btnSingleRollTwoChips.Children.Add(addImageToBet(chipValue[0],
+                                        btnSingleRollTwoChips));
+                                    break;
+                                case 2:
+                                    singleThree.Add(chipValue[0]);
+                                    btnThreeSingleRoll.Opacity = 1;
+                                    btnSingleRollThreeChips.ColumnDefinitions.Add(new ColumnDefinition());
+                                    btnSingleRollThreeChips.Children.Add(addImageToBet(chipValue[0],
+                                        btnSingleRollThreeChips));
+                                    break;
+                                case 3:
+                                    singleSeven.Add(chipValue[0]);
+                                    btnSingleRollSeven.Opacity = 1;
+                                    btnSingleRollSevenChips.ColumnDefinitions.Add(new ColumnDefinition());
+                                    btnSingleRollSevenChips.Children.Add(addImageToBet(chipValue[0],
+                                        btnSingleRollSevenChips));
+                                    break;
+                                case 4:
+                                    singleEleven.Add(chipValue[0]);
+                                    btnElevenSingleRoll.Opacity = 1;
+                                    btnSingleRollElevenChips.ColumnDefinitions.Add(new ColumnDefinition());
+                                    btnSingleRollElevenChips.Children.Add(addImageToBet(chipValue[0],
+                                        btnSingleRollElevenChips));
+                                    break;
+                                case 5:
+                                    singleTwelve.Add(chipValue[0]);
+                                    btnTwelveSingleRoll.Opacity = 1;
+                                    btnSingleRollTwelveChips.ColumnDefinitions.Add(new ColumnDefinition());
+                                    btnSingleRollTwelveChips.Children.Add(addImageToBet(chipValue[0],
+                                        btnSingleRollTwelveChips));
+                                    break;
+                                case 6:
+                                    hardFour.Add(chipValue[0]);
+                                    btnHardwayFour7to1.Opacity = 1;
+                                    btnHardwayFourChips.ColumnDefinitions.Add(new ColumnDefinition());
+                                    btnHardwayFourChips.Children.Add(addImageToBet(chipValue[0], btnHardwayFourChips));
+                                    break;
+                                case 7:
+                                    hardSix.Add(chipValue[0]);
+                                    btnHardwaySix9to1.Opacity = 1;
+                                    btnHardwaySixChips.ColumnDefinitions.Add(new ColumnDefinition());
+                                    btnHardwaySixChips.Children.Add(addImageToBet(chipValue[0], btnHardwaySixChips));
+                                    break;
+                                case 8:
+                                    hardEight.Add(chipValue[0]);
+                                    btnHardwayeight9to1.Opacity = 1;
+                                    btnHardwayEightChips.ColumnDefinitions.Add(new ColumnDefinition());
+                                    btnHardwayEightChips.Children.Add(addImageToBet(chipValue[0],
+                                        btnHardwayEightChips));
+                                    break;
+                                case 9:
+                                    hardTen.Add(chipValue[0]);
+                                    btnHardwayten7to1.Opacity = 1;
+                                    btnHardwayTenChips.ColumnDefinitions.Add(new ColumnDefinition());
+                                    btnHardwayTenChips.Children.Add(addImageToBet(chipValue[0], btnHardwayTenChips));
+                                    break;
+                                case 10:
+                                    fieldBets.Add(chipValue[0]);
+                                    btnField.Opacity = 1;
+                                    btnFieldChips.ColumnDefinitions.Add(new ColumnDefinition());
+                                    btnFieldChips.Children.Add(addImageToBet(chipValue[0], btnFieldChips));
+                                    break;
+                                default:
+                                    break;
+                            }
+
+                            playerInfo.ChipAmount -= chipValue[0];
+                            lblPlayerChips.Content = $"Chips:${playerInfo.ChipAmount}";
                         }
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Don't have enough chips to place that bet");
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Please select a chip before betting!");
             }
@@ -734,64 +775,71 @@ namespace CasinoSim
         {
             try
             {
-                for(int i = 0; i < getMultiRollBets().Count; i++)
+                if (playerInfo.ChipAmount >= chipValue[0])
                 {
-                    if(getMultiRollBets()[i] == (Button)sender)
+                    for(int i = 0; i < getMultiRollBets().Count; i++)
                     {
-                        switch(i)
+                        if(getMultiRollBets()[i] == (Button)sender)
                         {
-                            case 0:
-                                dontPassBets.Add(chipValue[0]);
-                                btnDontPassBar.Opacity = 1;
-                                btnDontPassLineChips.ColumnDefinitions.Add(new ColumnDefinition());
-                                btnDontPassLineChips.Children.Add(addImageToBet(chipValue[0], btnDontPassLineChips));
-                                break;
-                            case 1:
-                                passLineBets.Add(chipValue[0]);
-                                btnPassLine.Opacity = 1;
-                                btnPassLineChips.ColumnDefinitions.Add(new ColumnDefinition());
-                                btnPassLineChips.Children.Add(addImageToBet(chipValue[0], btnPassLineChips));
-                                break;
-                            case 2:
-                                fourBets.Add(chipValue[0]);
-                                btnMultiRollFour.Opacity = 1;
-                                btnMultiRollFourChips.ColumnDefinitions.Add(new ColumnDefinition());
-                                btnMultiRollFourChips.Children.Add(addImageToBet(chipValue[0], btnMultiRollFourChips));
-                                break;
-                            case 3:
-                                fiveBets.Add(chipValue[0]);
-                                btnMultiRollFive.Opacity = 1;
-                                btnMultiRollFiveChips.ColumnDefinitions.Add(new ColumnDefinition());
-                                btnMultiRollFiveChips.Children.Add(addImageToBet(chipValue[0], btnMultiRollFiveChips));
-                                break;
-                            case 4:
-                                sixBets.Add(chipValue[0]);
-                                btnMultiRollSix.Opacity = 1;
-                                btnMultiRollSixChips.ColumnDefinitions.Add(new ColumnDefinition());
-                                btnMultiRollSixChips.Children.Add(addImageToBet(chipValue[0], btnMultiRollSixChips));
-                                break;
-                            case 5:
-                                eightBets.Add(chipValue[0]);
-                                btnMultiRollEight.Opacity = 1;
-                                btnMultiRollEightChips.ColumnDefinitions.Add(new ColumnDefinition());
-                                btnMultiRollEightChips.Children.Add(addImageToBet(chipValue[0], btnMultiRollEightChips));
-                                break;
-                            case 6:
-                                nineBets.Add(chipValue[0]);
-                                btnMultiRollNine.Opacity = 1;
-                                btnMultiRollNineChips.ColumnDefinitions.Add(new ColumnDefinition());
-                                btnMultiRollNineChips.Children.Add(addImageToBet(chipValue[0], btnMultiRollNineChips));
-                                break;
-                            case 7:
-                                tenBets.Add(chipValue[0]);
-                                btnMultiRollTen.Opacity = 1;
-                                btnMultiRollTenChips.ColumnDefinitions.Add(new ColumnDefinition());
-                                btnMultiRollTenChips.Children.Add(addImageToBet(chipValue[0], btnMultiRollTenChips));
-                                break;
-                            default:
-                                break;
+                            switch(i)
+                            {
+                                case 0:
+                                    dontPassBets.Add(chipValue[0]);
+                                    btnDontPassBar.Opacity = 1;
+                                    btnDontPassLineChips.ColumnDefinitions.Add(new ColumnDefinition());
+                                    btnDontPassLineChips.Children.Add(addImageToBet(chipValue[0], btnDontPassLineChips));
+                                    break;
+                                case 1:
+                                    passLineBets.Add(chipValue[0]);
+                                    btnPassLine.Opacity = 1;
+                                    btnPassLineChips.ColumnDefinitions.Add(new ColumnDefinition());
+                                    btnPassLineChips.Children.Add(addImageToBet(chipValue[0], btnPassLineChips));
+                                    break;
+                                case 2:
+                                    fourBets.Add(chipValue[0]);
+                                    btnMultiRollFour.Opacity = 1;
+                                    btnMultiRollFourChips.ColumnDefinitions.Add(new ColumnDefinition());
+                                    btnMultiRollFourChips.Children.Add(addImageToBet(chipValue[0], btnMultiRollFourChips));
+                                    break;
+                                case 3:
+                                    fiveBets.Add(chipValue[0]);
+                                    btnMultiRollFive.Opacity = 1;
+                                    btnMultiRollFiveChips.ColumnDefinitions.Add(new ColumnDefinition());
+                                    btnMultiRollFiveChips.Children.Add(addImageToBet(chipValue[0], btnMultiRollFiveChips));
+                                    break;
+                                case 4:
+                                    sixBets.Add(chipValue[0]);
+                                    btnMultiRollSix.Opacity = 1;
+                                    btnMultiRollSixChips.ColumnDefinitions.Add(new ColumnDefinition());
+                                    btnMultiRollSixChips.Children.Add(addImageToBet(chipValue[0], btnMultiRollSixChips));
+                                    break;
+                                case 5:
+                                    eightBets.Add(chipValue[0]);
+                                    btnMultiRollEight.Opacity = 1;
+                                    btnMultiRollEightChips.ColumnDefinitions.Add(new ColumnDefinition());
+                                    btnMultiRollEightChips.Children.Add(addImageToBet(chipValue[0], btnMultiRollEightChips));
+                                    break;
+                                case 6:
+                                    nineBets.Add(chipValue[0]);
+                                    btnMultiRollNine.Opacity = 1;
+                                    btnMultiRollNineChips.ColumnDefinitions.Add(new ColumnDefinition());
+                                    btnMultiRollNineChips.Children.Add(addImageToBet(chipValue[0], btnMultiRollNineChips));
+                                    break;
+                                case 7:
+                                    tenBets.Add(chipValue[0]);
+                                    btnMultiRollTen.Opacity = 1;
+                                    btnMultiRollTenChips.ColumnDefinitions.Add(new ColumnDefinition());
+                                    btnMultiRollTenChips.Children.Add(addImageToBet(chipValue[0], btnMultiRollTenChips));
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
                     }
+                }
+                else
+                {
+                    MessageBox.Show("Don't have enough chips to place that bet");
                 }
             }
             catch(Exception ex)
@@ -813,28 +861,6 @@ namespace CasinoSim
                     bets.ElementAt(i).Value.Clear();
                 }
             }
-
-            switch (key) {
-                case "Four":
-                    MessageBox.Show("What the nut four");
-                    break;
-                case "Five":
-                    MessageBox.Show("What the nut five");
-                    break;
-                case "Six":
-                    MessageBox.Show("What the nut six");
-                    break;
-                case "Eight":
-                    MessageBox.Show("What the nut eight");
-                    break;
-                case "Nine":
-                    MessageBox.Show("What the nut nine");
-                    break;
-                case "Ten":
-                    MessageBox.Show("What the nut ten");
-                    break;
-
-            }
         }
 
         private void removeAllMultiRollList()
@@ -843,6 +869,8 @@ namespace CasinoSim
             {
                 kvp.Value.Clear();
             }
+            
+            bets.Clear();
 
             foreach (Grid grid in getMultiRollBetGrids())
             {
@@ -862,6 +890,7 @@ namespace CasinoSim
                 if(getBetListValues("Don't Pass Line") != 0)
                 {
                     winnings += 2 * getBetListValues("Don't Pass Line");
+                    playerInfo.ChipAmount += winnings;
                 }
                 removeAllMultiRollList();
 
@@ -871,6 +900,7 @@ namespace CasinoSim
                 if(getBetListValues("Pass Line") != 0)
                 {
                     winnings += 2 * getBetListValues("Pass Line");
+                    playerInfo.ChipAmount +=winnings;
                 }
                 removeAllMultiRollList();
                 point = 0;
@@ -882,6 +912,7 @@ namespace CasinoSim
                 {
                     winnings += 2 * getBetListValues("Don't Pass Line");
                     removeMultiRollList("Dont' Pass Line");
+                    playerInfo.ChipAmount +=winnings;
                 }
             } else
             {
@@ -890,7 +921,8 @@ namespace CasinoSim
                     point = 0;
                     if(getBetListValues("Pass Line") != 0)
                     {
-                        winnings += 2 * getBetListValues("Pass Line");   
+                        winnings += 2 * getBetListValues("Pass Line");
+                        playerInfo.ChipAmount +=winnings;
                     }
                     removeAllMultiRollList();
                 } else if(value == 7)
@@ -898,6 +930,7 @@ namespace CasinoSim
                     if(getBetListValues("Don't Pass Line") != 0)
                     {
                         winnings += 2 * getBetListValues("Don't Pass Line");
+                        playerInfo.ChipAmount +=winnings;
                     }
                     removeAllMultiRollList();
                     point = 0;
@@ -911,6 +944,7 @@ namespace CasinoSim
                             {
                                 winnings += 2 * getBetListValues("Four");
                                 removeMultiRollList("Four");
+                                playerInfo.ChipAmount +=winnings;
 
                             }
                             if(point == value)
@@ -918,6 +952,7 @@ namespace CasinoSim
                                 if(getBetListValues("Pass Line") != 0)
                                 {
                                     winnings += 2 * getBetListValues("Pass Line");
+                                    playerInfo.ChipAmount +=winnings;
                                 }
                                 removeAllMultiRollList();
                                 point = 0;
@@ -929,6 +964,7 @@ namespace CasinoSim
                             {
                                 winnings += 2 * getBetListValues("Five");
                                 removeMultiRollList("Five");
+                                playerInfo.ChipAmount +=winnings;
 
                             }
                             if(point == value)
@@ -936,6 +972,7 @@ namespace CasinoSim
                                 if(getBetListValues("Pass Line") != 0)
                                 {
                                     winnings += 2 * getBetListValues("Pass Line");
+                                    playerInfo.ChipAmount += winnings;
                                 }
                                 removeAllMultiRollList();
                                 point = 0;
@@ -946,6 +983,7 @@ namespace CasinoSim
                             {
                                 winnings += 2 * getBetListValues("Six");
                                 removeMultiRollList("Six");
+                                playerInfo.ChipAmount +=winnings;
 
                             }
                             if(point == value)
@@ -953,6 +991,7 @@ namespace CasinoSim
                                 if(getBetListValues("Pass Line") != 0)
                                 {
                                     winnings += 2 * getBetListValues("Pass Line");
+                                    playerInfo.ChipAmount +=winnings;
                                 }
                                 removeAllMultiRollList();
                                 point = 0;
@@ -963,6 +1002,7 @@ namespace CasinoSim
                             {
                                 winnings += 2 * getBetListValues("Eight");
                                 removeMultiRollList("Eight");
+                                playerInfo.ChipAmount +=winnings;
 
                             }
                             if(point == value)
@@ -970,6 +1010,7 @@ namespace CasinoSim
                                 if(getBetListValues("Pass Line") != 0)
                                 {
                                     winnings += 2 * getBetListValues("Pass Line");
+                                    playerInfo.ChipAmount +=winnings;
                                 }
                                 removeAllMultiRollList();
                                 point = 0;
@@ -980,6 +1021,7 @@ namespace CasinoSim
                             {
                                 winnings += 2 * getBetListValues("Nine");
                                 removeMultiRollList("Nine");
+                                playerInfo.ChipAmount +=winnings;
 
                             }
                             if(point == value)
@@ -987,6 +1029,7 @@ namespace CasinoSim
                                 if(getBetListValues("Pass Line") != 0)
                                 {
                                     winnings += 2 * getBetListValues("Pass Line");
+                                    playerInfo.ChipAmount +=winnings;
                                 }
                                 removeAllMultiRollList();
                                 point = 0;
@@ -997,6 +1040,7 @@ namespace CasinoSim
                             {
                                 winnings += 2 * getBetListValues("Ten");
                                 removeMultiRollList("Ten");
+                                playerInfo.ChipAmount +=winnings;
 
                             }
                             if(point == value)
@@ -1004,6 +1048,7 @@ namespace CasinoSim
                                 if(getBetListValues("Pass Line") != 0)
                                 {
                                     winnings += 2 * getBetListValues("Pass Line");
+                                    playerInfo.ChipAmount +=winnings;
                                 }
                                 removeAllMultiRollList();
                                 point = 0;
@@ -1012,6 +1057,7 @@ namespace CasinoSim
                         default:
                             break;
                     }
+                    lblPlayerChips.Content = $"Chips:${playerInfo.ChipAmount}";
                 }
             }
         }
