@@ -90,37 +90,44 @@ namespace CasinoSim
         //make only click from once user bets
         private void dealButton_Click(object sender, RoutedEventArgs e)
         {
-            restart();
-            player.hand.Add(deck.drawCard());
-            player.hand.Add(deck.drawCard());
-            dealer.hand.Add(deck.drawCard());
-            dealer.hand.Add(deck.drawCard());
-            foreach(Card card in player.hand)
+            if (bet == 0)
             {
-                player.value += card.Value;
+                MessageBox.Show("Place a bet before dealing a hand");
             }
-            foreach (Card card in dealer.hand)
+            else
             {
-                dealer.value += card.Value;
+                restart();
+                player.hand.Add(deck.drawCard());
+                player.hand.Add(deck.drawCard());
+                dealer.hand.Add(deck.drawCard());
+                dealer.hand.Add(deck.drawCard());
+                foreach(Card card in player.hand)
+                {
+                    player.value += card.Value;
+                }
+                foreach (Card card in dealer.hand)
+                {
+                    dealer.value += card.Value;
+                }
+                playerImage1.Source = player.hand[0].image.Source;
+                playerImage2.Source = player.hand[1].image.Source;
+                //img.Source = new BitmapImage(new Uri("files/resources/CasinoAssets/BlackJack/cardBack_blue1.png"));
+                //dealerImage1.Source = img.Source;
+                dealerImage1.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/BlackJack/Cards/cardBack_blue1.png"));
+                dealerImage2.Source = dealer.hand[1].image.Source;
+
+                btnChip1.IsEnabled = false;
+                btnChip5.IsEnabled = false;
+                btnChip10.IsEnabled = false;
+                btnChip20.IsEnabled = false;
+                btnChip50.IsEnabled = false;
+                btnChip100.IsEnabled = false;
+                btnChip1000.IsEnabled = false;
+                btnChip5000.IsEnabled = false;
+
+                playerInfo.ChipAmount -= bet;
+                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}"; 
             }
-            playerImage1.Source = player.hand[0].image.Source;
-            playerImage2.Source = player.hand[1].image.Source;
-            //img.Source = new BitmapImage(new Uri("files/resources/CasinoAssets/BlackJack/cardBack_blue1.png"));
-            //dealerImage1.Source = img.Source;
-            dealerImage1.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/BlackJack/Cards/cardBack_blue1.png"));
-            dealerImage2.Source = dealer.hand[1].image.Source;
-
-            btnChip1.IsEnabled = false;
-            btnChip5.IsEnabled = false;
-            btnChip10.IsEnabled = false;
-            btnChip20.IsEnabled = false;
-            btnChip50.IsEnabled = false;
-            btnChip100.IsEnabled = false;
-            btnChip1000.IsEnabled = false;
-            btnChip5000.IsEnabled = false;
-
-            playerInfo.ChipAmount -= bet;
-            lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
         }
         
         public void restart()
