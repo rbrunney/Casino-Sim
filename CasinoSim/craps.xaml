@@ -221,7 +221,7 @@
                 <Grid x:Name="btnFieldChips"/>
             </Button>
         </Grid>
-        <Label x:Name="asdf"  Content="" HorizontalAlignment="Left" Margin="38,220,0,0" VerticalAlignment="Top" Height="52" Width="88" FontSize="30"/>
+        <Label x:Name="asdf"  Content="" Foreground="White" HorizontalAlignment="Left" Margin="38,150,0,0" VerticalAlignment="Top" Height="90" Width="88" FontSize="30"/>
         <Label x:Name="lblPlayerChips" Content="Chips: $10,000" Foreground="White" BorderThickness="2" Panel.ZIndex="5" FontFamily="Playbill" FontSize="36" Height="45" Width="250" HorizontalContentAlignment="Left" Margin="15,220,0,0" />
     </Grid>
 </Window>

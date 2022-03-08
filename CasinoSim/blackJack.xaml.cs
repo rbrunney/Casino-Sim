@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,6 +41,8 @@ namespace CasinoSim
         Player dealer = new Player();
         Image img;
 
+        private int chipValue;
+
         private PlayerInfo playerInfo;
         public blackJack()
         {
@@ -72,13 +75,13 @@ namespace CasinoSim
         {
             for (int i = 0; i < chipsList.Count(); i++)
             {
-
                 chipsList[i] = false;
             }
         }
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
+            File.WriteAllText("playerInfo.txt", $"{playerInfo.BankAmount}:{playerInfo.ChipAmount}");
             this.Hide();
             new Window1().Show();
         }
@@ -106,6 +109,18 @@ namespace CasinoSim
             //dealerImage1.Source = img.Source;
             dealerImage1.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/BlackJack/Cards/cardBack_blue1.png"));
             dealerImage2.Source = dealer.hand[1].image.Source;
+
+            btnChip1.IsEnabled = false;
+            btnChip5.IsEnabled = false;
+            btnChip10.IsEnabled = false;
+            btnChip20.IsEnabled = false;
+            btnChip50.IsEnabled = false;
+            btnChip100.IsEnabled = false;
+            btnChip1000.IsEnabled = false;
+            btnChip5000.IsEnabled = false;
+
+            playerInfo.ChipAmount -= bet;
+            lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
         }
         
         public void restart()
@@ -132,7 +147,7 @@ namespace CasinoSim
             playerWin = false;
             dealerWin = false;
             gameDraw = false;
-            
+
             deck = new Deck(true);
             dealButton.Visibility = Visibility.Hidden;
             hitButton.Visibility = Visibility.Visible;
@@ -149,7 +164,8 @@ namespace CasinoSim
             resetChipsBool();
             chip1 = true;
             bet = 1;
-
+            chipValue = bet;
+            imgPlayerBet.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip{chipValue}.png"));
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -157,6 +173,8 @@ namespace CasinoSim
             resetChipsBool();
             chip5 = true;
             bet = 5;
+            chipValue = bet;
+            imgPlayerBet.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip{chipValue}.png"));
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -164,6 +182,8 @@ namespace CasinoSim
             resetChipsBool();
             chip10 = true;
             bet = 10;
+            chipValue = bet;
+            imgPlayerBet.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip{chipValue}.png"));
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
@@ -171,6 +191,8 @@ namespace CasinoSim
             resetChipsBool();
             chip20 = true;
             bet = 20;
+            chipValue = bet;
+            imgPlayerBet.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip{chipValue}.png"));
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
@@ -178,6 +200,8 @@ namespace CasinoSim
             resetChipsBool();
             chip50 = true;
             bet = 50;
+            chipValue = bet;
+            imgPlayerBet.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip{chipValue}.png"));
         }
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
@@ -185,6 +209,8 @@ namespace CasinoSim
             resetChipsBool();
             chip100 = true;
             bet = 100;
+            chipValue = bet;
+            imgPlayerBet.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip{chipValue}.png"));
         }
 
         private void Button_Click_6(object sender, RoutedEventArgs e)
@@ -192,6 +218,8 @@ namespace CasinoSim
             resetChipsBool();
             chip1000 = true;
             bet = 1000;
+            chipValue = bet;
+            imgPlayerBet.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip{chipValue}.png"));
         }
 
         private void Button_Click_7(object sender, RoutedEventArgs e)
@@ -199,6 +227,8 @@ namespace CasinoSim
             resetChipsBool();
             chip5000 = true;
             bet = 5000;
+            chipValue = bet;
+            imgPlayerBet.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip{chipValue}.png"));
         }
         private void standButton_Click(object sender, RoutedEventArgs e)
         {
@@ -263,10 +293,14 @@ namespace CasinoSim
             if (player.value == 21)
             {
                 playerWin = true;
+                playerInfo.ChipAmount += (bet * 3);
+                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
             }
             else if (player.value > dealer.value && player.value < 21)
             {
                 playerWin = true;
+                playerInfo.ChipAmount += (bet * 2);
+                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
             }
             else if (player.value > 21)
             {
@@ -283,19 +317,27 @@ namespace CasinoSim
             else if (dealer.value > 21)
             {
                 playerWin = true;
+                playerInfo.ChipAmount += (bet * 2);
+                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
             }
             else if (dealer.value == player.value)
             {
                 gameDraw = true;
+                playerInfo.ChipAmount += bet;
+                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
             }
             else if (dealer.hand.Count == 5)
             {
-                playerWin = true;
+                dealerWin = true;
             }
             else if (player.hand.Count == 5)
             {
-                dealerWin = true;
+                playerWin = true;
+                playerInfo.ChipAmount += (bet * 4);
+                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
             }
+
+            imgPlayerBet.Source = null;
             
             //MessageBox.Show($"Player BlackJack: {playerBlackJack} \n" +
             //    $"Player Win: {playerWin} \n" +
@@ -324,6 +366,15 @@ namespace CasinoSim
             dealButton.Visibility = Visibility.Visible;
             hitButton.Visibility = Visibility.Hidden;
             standButton.Visibility = Visibility.Hidden;
+            
+            btnChip1.IsEnabled = true;
+            btnChip5.IsEnabled = true;
+            btnChip10.IsEnabled = true;
+            btnChip20.IsEnabled = true;
+            btnChip50.IsEnabled = true;
+            btnChip100.IsEnabled = true;
+            btnChip1000.IsEnabled = true;
+            btnChip5000.IsEnabled = true;
         }
     }
 

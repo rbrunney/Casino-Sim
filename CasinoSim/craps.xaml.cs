@@ -57,11 +57,13 @@ namespace CasinoSim
             insertLists();
             playerInfo = new PlayerInfo();
             lblPlayerChips.Content = $"Chips:${playerInfo.ChipAmount}";
+            asdf.Content = "Point:\nNone";
         }
         public int point = 0;
         //goes back to game selection
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
+            File.WriteAllText("playerInfo.txt", $"{playerInfo.BankAmount}:{playerInfo.ChipAmount}");
             Hide();
             new Window1().Show();
         }
@@ -297,83 +299,92 @@ namespace CasinoSim
         }
         private void RollButton_Click(object sender, RoutedEventArgs e)
         {
-            Random random = new Random();
-            int roll1 = random.Next(1, 7);
-            int roll2 = random.Next(1, 7);
-            int[] rolls = { roll1, roll2 };
-            for (int i = 0; i < rolls.Length; i++)
+            try
             {
-                switch (rolls[i])
+                int checkValue = chipValue[0];
+                Random random = new Random();
+                int roll1 = random.Next(1, 7);
+                int roll2 = random.Next(1, 7);
+                int[] rolls = { roll1, roll2 };
+                for (int i = 0; i < rolls.Length; i++)
                 {
-                    case 1:
-                        if (i == 0)
-                        {
-                            imgDiceOne.Source = getDiceList()[0];
-                        }
-                        else
-                        {
-                            imgDiceTwo.Source = getDiceList()[0];
-                        }
-                        break;
-                    case 2:
-                        if (i == 0)
-                        {
-                            imgDiceOne.Source = getDiceList()[1];
-                        }
-                        else
-                        {
-                            imgDiceTwo.Source = getDiceList()[1];
-                        }
-                        break;
-                    case 3:
-                        if (i == 0)
-                        {
-                            imgDiceOne.Source = getDiceList()[2];
-                        }
-                        else
-                        {
-                            imgDiceTwo.Source = getDiceList()[2];
-                        }
-                        break;
-                    case 4:
-                        if (i == 0)
-                        {
-                            imgDiceOne.Source = getDiceList()[3];
-                        }
-                        else
-                        {
-                            imgDiceTwo.Source = getDiceList()[3];
-                        }
-                        break;
-                    case 5:
-                        if (i == 0)
-                        {
-                            imgDiceOne.Source = getDiceList()[4];
-                        }
-                        else
-                        {
-                            imgDiceTwo.Source = getDiceList()[4];
-                        }
-                        break;
-                    case 6:
-                        if (i == 0)
-                        {
-                            imgDiceOne.Source = getDiceList()[5];
-                        }
-                        else
-                        {
-                            imgDiceTwo.Source = getDiceList()[5];
-                        }
-                        break;
-                    default:
-                        break;
+                    switch (rolls[i])
+                    {
+                        case 1:
+                            if (i == 0)
+                            {
+                                imgDiceOne.Source = getDiceList()[0];
+                            }
+                            else
+                            {
+                                imgDiceTwo.Source = getDiceList()[0];
+                            }
+                            break;
+                        case 2:
+                            if (i == 0)
+                            {
+                                imgDiceOne.Source = getDiceList()[1];
+                            }
+                            else
+                            {
+                                imgDiceTwo.Source = getDiceList()[1];
+                            }
+                            break;
+                        case 3:
+                            if (i == 0)
+                            {
+                                imgDiceOne.Source = getDiceList()[2];
+                            }
+                            else
+                            {
+                                imgDiceTwo.Source = getDiceList()[2];
+                            }
+                            break;
+                        case 4:
+                            if (i == 0)
+                            {
+                                imgDiceOne.Source = getDiceList()[3];
+                            }
+                            else
+                            {
+                                imgDiceTwo.Source = getDiceList()[3];
+                            }
+                            break;
+                        case 5:
+                            if (i == 0)
+                            {
+                                imgDiceOne.Source = getDiceList()[4];
+                            }
+                            else
+                            {
+                                imgDiceTwo.Source = getDiceList()[4];
+                            }
+                            break;
+                        case 6:
+                            if (i == 0)
+                            {
+                                imgDiceOne.Source = getDiceList()[5];
+                            }
+                            else
+                            {
+                                imgDiceTwo.Source = getDiceList()[5];
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                    
                 }
-            }
-            int value = getValueRoll(imgDiceOne, imgDiceTwo);
+                int value = getValueRoll(imgDiceOne, imgDiceTwo);
 
-            //asdf.Content = singleRollBets(value);
-            singleRollBets(value);
-            multiRollBets(value);
+                //asdf.Content = singleRollBets(value);
+                singleRollBets(value);
+                multiRollBets(value);
+            } 
+            catch(Exception ex)
+            {
+                MessageBox.Show("Please place a bet before rolling!");
+            }
         }
 
         private string[] singleRollList = {"Single Two", "SIngle Craps", "Single Three", "Hard Four", "Hard Six", "Hard Eight", "Hard Ten", "Single Seven", "Field" };
@@ -834,6 +845,10 @@ namespace CasinoSim
                                 default:
                                     break;
                             }
+                            
+                            playerInfo.ChipAmount -= chipValue[0];
+                            lblPlayerChips.Content = $"Chips:${playerInfo.ChipAmount}";
+                            
                         }
                     }
                 }
@@ -876,6 +891,7 @@ namespace CasinoSim
             {
                 grid.Children.Clear();
             }
+            chipValue.Clear();
         }
         
         private void multiRollBets(int value)
@@ -883,7 +899,7 @@ namespace CasinoSim
             if(point == 0 && !(value == 7 || value == 11 || value == 2 || value == 3 || value == 12))
             {
                 point = value;
-                asdf.Content = point;
+                asdf.Content = $"Point:\n{point}";
                 
             }else if(point == 0 && (value == 2 || value == 3 || value == 12))
             {
@@ -908,6 +924,7 @@ namespace CasinoSim
             {
                 removeAllMultiRollList();
                 point = 0;
+                asdf.Content = "Point:\nNone";
                 if(getBetListValues("Don't Pass Line") != 0)
                 {
                     winnings += 2 * getBetListValues("Don't Pass Line");
@@ -1057,9 +1074,11 @@ namespace CasinoSim
                         default:
                             break;
                     }
-                    lblPlayerChips.Content = $"Chips:${playerInfo.ChipAmount}";
+                    
                 }
             }
+            lblPlayerChips.Content = $"Chips:${playerInfo.ChipAmount}";
         }
+        
     }
 }
