@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -100,6 +101,7 @@ namespace CasinoSim
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
+            File.WriteAllText("playerInfo.txt", $"{playerInfo.BankAmount}:{playerInfo.ChipAmount}");
             this.Hide();
             new Window1().Show();
 
