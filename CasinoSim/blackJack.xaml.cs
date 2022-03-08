@@ -375,6 +375,8 @@ namespace CasinoSim
             btnChip100.IsEnabled = true;
             btnChip1000.IsEnabled = true;
             btnChip5000.IsEnabled = true;
+
+            bet = 0;
         }
     }
 
