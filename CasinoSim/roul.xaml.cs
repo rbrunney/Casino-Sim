@@ -169,7 +169,10 @@ namespace CasinoSim
             chip5000 = true;
             bet = 5000;
         }
-
+  private void rulesButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Single number bet pays 35 to 1. Also called 'straight up.'Twelve numbers or dozens(first, second, third dozen) pays 2 to 1.Column bet(12 numbers in a row) pays 2 to 1. 18 numbers(1 - 18) pays even money.18 numbers(19 - 36) pays even money. Red or black pays even money. Odd or even bets pay even money.Each spin of the wheel provides a multitude of options for the player. A player may bet on single numbers, rows of numbers, or on adjacent numbers.A player also may play colors, odd or even numbers, among others.");
+        }
         private void Spin(object sender, RoutedEventArgs e)
         {
             int winnings = 0;
