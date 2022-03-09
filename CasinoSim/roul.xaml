@@ -163,10 +163,10 @@
         <Button  x:Name="black" BorderThickness="0"  Margin="489,219,224,156" Background="transparent" RenderTransformOrigin="0.476,1.336" Click="Bet"/>
         <Button  x:Name="odd" BorderThickness="0"  Margin="564,219,149,156" Background="transparent" RenderTransformOrigin="0.476,1.336" Click="Bet"/>
         <Button x:Name="lastEigheen"  Margin="641,219,72,156" Background="transparent" BorderThickness="0"  RenderTransformOrigin="0.476,1.336"/>
-        <Button x:Name="zero" Background="transparent" BorderThickness="0"  HorizontalAlignment="Left" Margin="240,20,0,0" VerticalAlignment="Top" Height="176" Width="17"/>
-        <Button x:Name="zero2" Background="transparent" BorderThickness="0"  HorizontalAlignment="Left" Margin="223,27,0,0" VerticalAlignment="Top" Height="149" Width="17"/>
+        <Button x:Name="zero" Background="transparent" BorderThickness="0"  HorizontalAlignment="Left" Margin="240,20,0,0" VerticalAlignment="Top" Height="176" Width="17" Click="Bet"/>
+        <Button x:Name="zero2" Background="transparent" BorderThickness="0"  HorizontalAlignment="Left" Margin="223,27,0,0" VerticalAlignment="Top" Height="149" Width="17" Click="Bet"/>
         <Button x:Name="zero3" Background="transparent" BorderThickness="0"  HorizontalAlignment="Left" Margin="206,75,0,0" VerticalAlignment="Top" Height="66" Width="17" Click="Bet"/>
-        
+
         <Label x:Name="lblPlayerChips" Content="Chips: $10,000" Foreground="White" BorderThickness="2" Panel.ZIndex="5" FontFamily="Playbill" FontSize="36" Height="45" Width="250" HorizontalAlignment="Right" HorizontalContentAlignment="Right" Margin="0, 165, 15, 0"/>
     </Grid>
 </Window>

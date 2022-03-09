@@ -172,8 +172,559 @@ namespace CasinoSim
 
         private void Spin(object sender, RoutedEventArgs e)
         {
+            int winnings = 0;
             Random random = new();
             int spin = random.Next(0, 36);
+
+            //just numbers
+            switch(spin)
+            {
+                case 0:
+                    for(int i = 0; i < Zero.Count; i++)
+                    {
+                        winnings += Zero.ElementAt(i);
+                    }
+                    Zero.Clear();
+                    break;
+                case 1:
+                    for(int i = 0; i < One.Count; i++)
+                    {
+                        winnings += One.ElementAt(i);
+                    }
+                    One.Clear();
+                    break;
+                case 2:
+                    for(int i = 0; i < Two.Count; i++)
+                    {
+                        winnings += Two.ElementAt(i);
+                    }
+                    Two.Clear();
+                    break;
+                case 3:
+                    for(int i = 0; i < Three.Count; i++)
+                    {
+                        winnings += Three.ElementAt(i);
+                    }
+                    Three.Clear();
+                    break;
+                case 4:
+                    for(int i = 0; i < Four.Count; i++)
+                    {
+                        winnings += Four.ElementAt(i);
+                    }
+                    Four.Clear();
+                    break;
+                case 5:
+                    for(int i = 0; i < Five.Count; i++)
+                    {
+                        winnings += Five.ElementAt(i);
+                    }
+                    Five.Clear();
+                    break;
+                case 6:
+                    for(int i = 0; i < Six.Count; i++)
+                    {
+                        winnings += Six.ElementAt(i);
+                    }
+                    Six.Clear();
+                    break;
+                case 7:
+                    for(int i = 0; i < Seven.Count; i++)
+                    {
+                        winnings += Seven[i];
+                    }
+                    Seven.Clear();
+                    break;
+                case 8:
+                    for(int i = 0; i < Eight.Count; i++)
+                    {
+                        winnings += Eight[i];
+                    }
+                    Eight.Clear();
+                    break;
+                case 9:
+                    for(int i = 0; i < Nine.Count; i++)
+                    {
+                        winnings += Nine[i];
+                    }
+                    Nine.Clear();
+                    break;
+                case 10:
+                    for(int i = 0; i < Ten.Count; i++)
+                    {
+                        winnings += Ten[i];
+                    }
+                    Ten.Clear();
+                    break;
+                case 11:
+                    for(int i = 0; i < Eleven.Count; i++)
+                    {
+                        winnings += Eleven[i];
+                    }
+                    Eleven.Clear();
+                    break;
+                case 12:
+                    for(int i = 0; i < Twelve.Count; i++)
+                    {
+                        winnings += Twelve[i];
+                    }
+                    Twelve.Clear();
+                    break;
+                case 13:
+                    for(int i = 0; i < Thirteen.Count; i++)
+                    {
+                        winnings += Thirteen[i];
+                    }
+                    Thirteen.Clear();
+                    break;
+                case 14:
+                    for(int i = 0; i < Fourteen.Count; i++)
+                    {
+                        winnings += Fourteen[i];
+                    }
+                    Fourteen.Clear();
+                    break;
+                case 15:
+                    for(int i = 0; i < Fifteen.Count; i++)
+                    {
+                        winnings += Fifteen[i];
+                    }
+                    Fifteen.Clear();
+                    break;
+                case 16:
+                    foreach(int value in Sixteen)
+                    {
+                        winnings += value;
+                    }
+                    Sixteen.Clear();
+                    break;
+                case 17:
+                    foreach(int value in Seventeen)
+                    {
+                        winnings += value;
+                    }
+                    Seventeen.Clear();
+                    break;
+                case 18:
+                    foreach(int value in Eighteen)
+                    {
+                        winnings += value;
+                    }
+                    Eighteen.Clear();
+                    break;
+                case 19:
+                    foreach(int value in Nineteen)
+                    {
+                        winnings += value;
+                    }
+                    Nineteen.Clear();
+                    break;
+                case 20:
+                    foreach(int value in Twenty)
+                    {
+                        winnings += value;
+                    }
+                    Twenty.Clear();
+                    break;
+                case 21:
+                    foreach(int value in Twentyone)
+                    {
+                        winnings += value;
+                    }
+                    Twentyone.Clear();
+                    break;
+                case 22:
+                    foreach(int value in Twentytwo)
+                    {
+                        winnings += value;
+                    }
+                    Twentytwo.Clear();
+                    break;
+                case 23:
+                    foreach(int value in Twentythree)
+                    {
+                        winnings += value;
+                    }
+                    Twentythree.Clear();
+                    break;
+                case 24:
+                    foreach(int value in Twentyfour)
+                    {
+                        winnings += value;
+                    }
+                    Twentyfour.Clear();
+                    break;
+                case 25:
+                    foreach(int value in Twentyfive)
+                    {
+                        winnings += value;
+                    }
+                    Twentyfive.Clear();
+                    break;
+                case 26:
+                    foreach(int value in Twentysix)
+                    {
+                        winnings += value;
+                    }
+                    Twentysix.Clear();
+                    break;
+                case 27:
+                    foreach(int value in Twentyseven)
+                    {
+                        winnings += value;
+                    }
+                    Twentyseven.Clear();
+                    break;
+                case 28:
+                    foreach(int value in Twentyeight)
+                    {
+                        winnings += value;
+                    }
+                    Twentyeight.Clear();
+                    break;
+                case 29:
+                    foreach(int value in Twentynine)
+                    {
+                        winnings += value;
+                    }Twentynine.Clear();
+                    break;
+                case 30:
+                    foreach(int value in Thirty)
+                    {
+                        winnings += value;
+                    }
+                    Thirty.Clear();
+                    break;
+                case 31:
+                    foreach(int value in Thirtyone)
+                    {
+                        winnings += value;
+                    }
+                    Thirtyone.Clear();
+                    break;
+                case 32:
+                    foreach(int value in Thirtytwo)
+                    {
+                        winnings += value;
+                    }
+                    Thirtytwo.Clear();
+                    break;
+                case 33:
+                    foreach(int value in Thirtythree)
+                    {
+                        winnings += value;
+                    }
+                    Thirtythree.Clear();
+                    break;
+                case 34:
+                    foreach(int value in Thirtyfour)
+                    {
+                        winnings += value;
+                    }
+                    Thirtyfour.Clear();
+                    break;
+                case 35:
+                    foreach(int value in Thirtyfive)
+                    {
+                        winnings += value;
+                    }
+                    Thirtyfive.Clear();
+                    break;
+                case 36:
+                    foreach(int value  in Thirtysix)
+                    {
+                        winnings += value;
+                    }
+                    Thirtysix.Clear();
+                    break;
+                default:
+                    break;
+            }
+            
+            //red and black
+            switch(spin)
+            {
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 9:
+                case 12:
+                case 14:
+                case 16:
+                case 18:
+                case 19:
+                case 21:
+                case 23:
+                case 27:
+                case 25:
+                case 30:
+                case 32:
+                case 34:
+                case 36:
+                    foreach(int value in RedAll)
+                    {
+                        winnings += value;
+                    }
+                    RedAll.Clear();
+                    break;
+                case 2:
+                case 4:
+                case 6:
+                case 8:
+                case 10:
+                case 11:
+                case 13:
+                case 15:
+                case 17:
+                case 20:
+                case 24:
+                case 22:
+                case 26:
+                case 28:
+                case 29:
+                case 31:
+                case 33:
+                case 35:
+                    foreach(int value in BlackAll)
+                    {
+                        winnings += value;
+                    }
+                    BlackAll.Clear();
+                    break;
+                default:
+                    break;
+            }
+
+            //even/odd
+            switch(spin)
+            {
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 9:
+                case 11:
+                case 13:
+                case 15:
+                case 17:
+                case 19:
+                case 21:
+                case 23:
+                case 25:
+                case 27:
+                case 29:
+                case 31:
+                case 33:
+                case 35:
+                    foreach(int value in Odd)
+                    {
+                        winnings += value;
+                    }
+                    Odd.Clear();
+                    break;
+                case 2:
+                case 4:
+                case 6:
+                case 8:
+                case 10:
+                case 12:
+                case 14:
+                case 16:
+                case 18:
+                case 20:
+                case 22:
+                case 24:
+                case 26:
+                case 28:
+                case 30:
+                case 32:
+                case 34:
+                case 36:
+                    foreach(int value in Even)
+                    {
+                        winnings += value;
+                    }
+                    Even.Clear();
+                    break;
+                default:
+                    break;
+            }
+        
+            //first 18/ last 18
+            switch(spin)
+            {
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                case 12:
+                case 13:
+                case 14:
+                case 15:
+                case 16:
+                case 17:
+                case 18:
+                    foreach(int value in First)
+                    {
+                        winnings += value;
+                    }
+                    First.Clear();
+                    break;
+                case 19:
+                case 20:
+                case 21:
+                case 22:
+                case 23:
+                case 24:
+                case 25:
+                case 26:
+                case 27:
+                case 28:
+                case 29:
+                case 30:
+                case 31:
+                case 32:
+                case 33:
+                case 34:
+                case 35:
+                case 36:
+                    foreach(int value in Last)
+                    {
+                        winnings += value;
+                    }
+                    Last.Clear();
+            }
+
+            //Columns
+            switch(spin)
+            {
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                case 12:
+                    foreach(int value in Left12)
+                    {
+                        winnings += value;
+                    }
+                    Left12.Clear();
+                    break;
+                case 13:
+                case 14:
+                case 15:
+                case 16:
+                case 17:
+                case 18:
+                case 19:
+                case 20:
+                case 21:
+                case 22:
+                case 23:
+                case 24:
+                    foreach(int value in Middle12)
+                    {
+                        winnings += value;
+                    }
+                    Middle.Clear();
+                    break;
+                case 25:
+                case 26:
+                case 27:
+                case 28:
+                case 29:
+                case 30:
+                case 31:
+                case 32:
+                case 33:
+                case 34:
+                case 35:
+                case 36:
+                    foreach(int value in Right12)
+                    {
+                        winnings += value;
+                    }
+                    Right12.Clear();
+                    break;
+                default:
+                    break;
+            }
+
+            //rows
+            switch(spin)
+            {
+                case 3:
+                case 6:
+                case 9:
+                case 12:
+                case 15:
+                case 18:
+                case 21:
+                case 24:
+                case 27:
+                case 30:
+                case 33:
+                case 36:
+                    foreach(int value in Top)
+                    {
+                        winnings += value;
+                    }
+                    Top.Clear();
+                    break;
+                case 2:
+                case 5:
+                case 8:
+                case 11:
+                case 14:
+                case 17:
+                case 20:
+                case 23:
+                case 26:
+                case 29:
+                case 32:
+                case 35:
+                    foreach(int value in Middle)
+                    {
+                        winnings += value;
+                    }
+                    Middle.Clear();
+                    break;
+                case 1:
+                case 4:
+                case 7:
+                case 10:
+                case 13:
+                case 16:
+                case 19:
+                case 22:
+                case 25:
+                case 28:
+                case 31:
+                case 34:
+                    foreach(int value in Bottom)
+                    {
+                        winnings += value;
+                    }
+                    Bottom.Clear();
+                    break;
+                default:
+                    break;
+            }
+
         }
 
         private void Bet(object sender, RoutedEventArgs e)
