@@ -94,9 +94,17 @@ namespace CasinoSim
             {
                 MessageBox.Show("Place a bet before dealing a hand");
             }
+            else if(playerInfo.ChipAmount < bet)
+            {
+                MessageBox.Show("Place a bet that you can afford");
+                restartBet();
+                imgPlayerBet.Source = null;
+            }
             else
+
             {
                 restart();
+                Resources["winLabel"] = "";
                 player.hand.Add(deck.drawCard());
                 player.hand.Add(deck.drawCard());
                 dealer.hand.Add(deck.drawCard());
@@ -132,7 +140,6 @@ namespace CasinoSim
         
         public void restart()
         {
-            Resources["winLabel"] = "";
             player.hand.Clear();
             dealer.hand.Clear();
             player.value = 0;
@@ -160,15 +167,29 @@ namespace CasinoSim
             hitButton.Visibility = Visibility.Visible;
             standButton.Visibility = Visibility.Visible;
         }
+        
+        public void restartBet()
+        {
+            restart();
+            dealButton.Visibility = Visibility.Visible;
+            hitButton.Visibility = Visibility.Hidden;
+            standButton.Visibility = Visibility.Hidden;
+        }
 
         private void rulesButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Hello - Rules");
+            MessageBox.Show("Hello - Rules\n" +
+                "First make your bet then press deal!\n"
+                + "In blackjack you and the dealer are each dealt two cards your goal is to try to get a card total of 21 without going higher or you will bust or lose.\n" +
+                "This can be done with your current cards or you can hit to draw or stand to wait. Face cards are worth 10 points. Aces are worth either 1 or 11 points.\n " +
+                "if the dealers hand is 17 the dealer must stand or not draw anymore cards.\n" +
+                "You will want to bet based on how close you are to 21 compared to the dealer. Good luck and have fun!  ");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             resetChipsBool();
+            restartBet();
             chip1 = true;
             bet = 1;
             chipValue = bet;
@@ -178,6 +199,7 @@ namespace CasinoSim
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             resetChipsBool();
+            restartBet();
             chip5 = true;
             bet = 5;
             chipValue = bet;
@@ -187,6 +209,7 @@ namespace CasinoSim
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             resetChipsBool();
+            restartBet();
             chip10 = true;
             bet = 10;
             chipValue = bet;
@@ -196,6 +219,7 @@ namespace CasinoSim
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             resetChipsBool();
+            restartBet();
             chip20 = true;
             bet = 20;
             chipValue = bet;
@@ -205,6 +229,7 @@ namespace CasinoSim
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
             resetChipsBool();
+            restartBet();
             chip50 = true;
             bet = 50;
             chipValue = bet;
@@ -214,6 +239,7 @@ namespace CasinoSim
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
             resetChipsBool();
+            restartBet();
             chip100 = true;
             bet = 100;
             chipValue = bet;
@@ -223,6 +249,7 @@ namespace CasinoSim
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
             resetChipsBool();
+            restartBet();
             chip1000 = true;
             bet = 1000;
             chipValue = bet;
@@ -232,6 +259,7 @@ namespace CasinoSim
         private void Button_Click_7(object sender, RoutedEventArgs e)
         {
             resetChipsBool();
+            restartBet();
             chip5000 = true;
             bet = 5000;
             chipValue = bet;
