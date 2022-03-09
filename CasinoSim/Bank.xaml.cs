@@ -25,6 +25,7 @@ namespace CasinoSim
         int bank = 0;
         string labelchip;
         string labelbank;
+        private bool insufficient;
 
         PlayerInfo playerInfo;
      
@@ -54,6 +55,7 @@ namespace CasinoSim
         //deposit to the bank
         private void moreButton_Copy_Click(object sender, RoutedEventArgs e)
         {
+            insufficient = false;
             int chipsConvertingtoCash = -1;
             try
             {
@@ -64,27 +66,31 @@ namespace CasinoSim
             }
             if (chipsConvertingtoCash > chips || chipsConvertingtoCash < 0) {
                 MessageBox.Show("Not enough funds");
+                insufficient = true;
             }
-            bank = bank + chipsConvertingtoCash;
-            chips = chips - chipsConvertingtoCash;
 
-            if (bank < 0)
+            if (!insufficient)
             {
-                bankBal.Foreground = System.Windows.Media.Brushes.Red;
+                bank = bank + chipsConvertingtoCash;
+                chips = chips - chipsConvertingtoCash;
+
+                if (bank < 0)
+                {
+                    bankBal.Foreground = System.Windows.Media.Brushes.Red;
+                }
+                else
+                {
+                    bankBal.Foreground = System.Windows.Media.Brushes.White;
+                }
+                chipsBal.Content = labelchip+" " + chips;
+                bankBal.Content = labelbank + " " + bank;
+
+                playerInfo.BankAmount = bank;
+                playerInfo.ChipAmount = chips;
+                File.WriteAllText("playerInfo.txt", $"{bank}:{chips}");
+
+                MessageBox.Show("Deposit complete");
             }
-            else
-            {
-                bankBal.Foreground = System.Windows.Media.Brushes.White;
-            }
-            chipsBal.Content = labelchip+" " + chips;
-            bankBal.Content = labelbank + " " + bank;
-
-            playerInfo.BankAmount = bank;
-            playerInfo.ChipAmount = chips;
-            File.WriteAllText("playerInfo.txt", $"{bank}:{chips}");
-
-            MessageBox.Show("Deposit complete");
-
         }
         //withdraw to the game
         private void moreButton_Copy1_Click(object sender, RoutedEventArgs e)
