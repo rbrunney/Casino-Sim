@@ -601,6 +601,7 @@ namespace CasinoSim
                         winnings += value;
                     }
                     Last.Clear();
+                    break;
             }
 
             //Columns
