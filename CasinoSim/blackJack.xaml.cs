@@ -163,7 +163,12 @@ namespace CasinoSim
 
         private void rulesButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Hello - Rules");
+            MessageBox.Show("Hello - Rules\n" +
+                "First make your bet then press deal!\n"
+                + "In blackjack you and the dealer are each dealt two cards your goal is to try to get a card total of 21 without going higher or you will bust or lose.\n" +
+                "This can be done with your current cards or you can hit to draw or stand to wait. Face cards are worth 10 points. Aces are worth either 1 or 11 points.\n " +
+                "if the dealers hand is 17 the dealer must stand or not draw anymore cards.\n" +
+                "You will want to bet based on how close you are to 21 compared to the dealer. Good luck and have fun!  ");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
