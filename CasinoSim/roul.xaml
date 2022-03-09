@@ -112,60 +112,60 @@
         <Image Source="/files/resources/CasinoAssets/Roulette/RouletteWheel_SingleZero.png" Panel.ZIndex="2" HorizontalAlignment="Left" Width="194" Margin="28,117,0,91"/>
         <Image Source="/files/resources/CasinoAssets/Roulette/Roulette_SingleZero.png" Panel.ZIndex="0" HorizontalAlignment="Left" Width="554" Margin="202,7,0,145"/>
 
-        <Button x:Name="three" Margin="257,20,493,345" Content="kd" Background="transparent" Click="Bet"/>
-        <Button x:Name="six" Margin="296,20,455,345" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="nine" Margin="335,20,417,345" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="twelve" Margin="374,20,378,345" Background="transparent" Content="kd" Click="Bet"/>
+        <Button x:Name="three" Margin="257,20,493,345" BorderThickness="0" Background="transparent" Click="Bet"/>
+        <Button x:Name="six" Margin="296,20,455,345" Background="transparent" BorderThickness="0" Click="Bet"/>
+        <Button x:Name="nine" Margin="335,20,417,345" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="twelve" Margin="374,20,378,345" Background="transparent" BorderThickness="0"  Click="Bet"/>
 
-        <Button x:Name="fifteen" Margin="411,20,339,345" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="eighteen" Margin="450,20,301,345" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="twentyOne" Margin="488,20,263,345" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="twentyFour" Margin="527,20,225,345" Background="transparent" Content="kd" Click="Bet"/>
+        <Button x:Name="fifteen" Margin="411,20,339,345" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="eighteen" Margin="450,20,301,345" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="twentyOne" Margin="488,20,263,345" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="twentyFour" Margin="527,20,225,345" Background="transparent" BorderThickness="0"  Click="Bet"/>
 
-        <Button x:Name="twentySeven" Margin="564,20,187,345" Background="transparent" Click="Bet" >kd</Button>
-        <Button x:Name="thirty" Margin="603,20,149,345" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="thirtyThree" Margin="642,20,111,345" Background="transparent"  Content="kd" Click="Bet"/>
-        <Button x:Name="thirtySix" Margin="681,20,73,345" Background="transparent" Content="kd" Click="Bet"/>
+        <Button x:Name="twentySeven" Margin="564,20,187,345" Background="transparent" BorderThickness="0"  ></Button>
+        <Button x:Name="thirty" Margin="603,20,149,345" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="thirtyThree" Margin="642,20,111,345" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="thirtySix" Margin="681,20,73,345" Background="transparent" BorderThickness="0"  Click="Bet"/>
 
-        <Button x:Name="top" Margin="720,20,34,345" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="two" Margin="257,72,493,293" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="five" Margin="296,72,455,293" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="eight" Margin="335,72,417,293" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="eleven" Margin="374,72,378,293" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="fourteen" Margin="411,72,339,293" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="seventeen" Margin="450,72,301,293" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="twenty" Margin="488,72,263,293" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="twentyThree" Margin="527,72,225,293" Background="transparent"  Content="kd" Click="Bet"/>
-        <Button x:Name="twentySix" Margin="564,72,187,293" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="twentyNine" Margin="603,72,149,293" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="thirtyTwo" Margin="642,72,111,293" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="thirtyFive" Margin="681,72,73,293" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="middle" Margin="720,72,34,293" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="one" Margin="257,127,493,238" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="four" Margin="296,127,455,238" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="seven" Margin="335,127,417,238" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="ten" Margin="374,127,378,238" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="thirteen" Margin="411,127,339,238" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="sixteen" Margin="450,127,301,238" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="nineteen" Margin="488,127,263,238" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="twentyTwo" Margin="527,127,225,238" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="twentyFive" Margin="564,127,187,238" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="twentyEight" Margin="603,127,149,238" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="thirtyOne" Margin="642,127,111,238" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="thirtyFour" Margin="681,127,73,238" Background="transparent" Content="kd" Click="Bet"/>
-        <Button x:Name="bottom" Margin="720,127,34,238" Background="transparent" Content="kd" Click="Bet"/>
-        <Button  x:Name="left12" Content="kd" Margin="258,179,379,195" Background="transparent" Click="Bet" />
-        <Button  x:Name="middle12" Content="kd" Margin="412,179,225,195" Background="transparent" Click="Bet" />
-        <Button  x:Name="right12" Content="kd" Margin="564,179,73,195" Background="transparent" Click="Bet" />
-        <Button  x:Name="firstEighteen" Content="kd" Margin="258,219,455,156" Background="transparent" RenderTransformOrigin="0.476,1.336" Click="Bet"/>
-        <Button  x:Name="even" Content="kd" Margin="335,219,378,156" Background="transparent" RenderTransformOrigin="0.476,1.336" Click="Bet"/>
-        <Button  x:Name="red" Content="kd" Margin="412,219,301,156" Background="transparent" RenderTransformOrigin="0.476,1.336" Click="Bet"/>
-        <Button  x:Name="black" Content="kd" Margin="489,219,224,156" Background="transparent" RenderTransformOrigin="0.476,1.336" Click="Bet"/>
-        <Button  x:Name="odd" Content="kd" Margin="564,219,149,156" Background="transparent" RenderTransformOrigin="0.476,1.336" Click="Bet"/>
-        <Button x:Name="lastEigheen"  Margin="641,219,72,156" Background="transparent" RenderTransformOrigin="0.476,1.336"/>
-        <Button x:Name="zero" Background="transparent" HorizontalAlignment="Left" Margin="240,20,0,0" VerticalAlignment="Top" Height="176" Width="17"/>
-        <Button x:Name="zero2" Background="transparent" HorizontalAlignment="Left" Margin="223,27,0,0" VerticalAlignment="Top" Height="149" Width="17"/>
-        <Button x:Name="zero3" Background="transparent" HorizontalAlignment="Left" Margin="206,75,0,0" VerticalAlignment="Top" Height="66" Width="17" Click="Bet"/>
+        <Button x:Name="top" Margin="720,20,34,345" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="two" Margin="257,72,493,293" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="five" Margin="296,72,455,293" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="eight" Margin="335,72,417,293" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="eleven" Margin="374,72,378,293" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="fourteen" Margin="411,72,339,293" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="seventeen" Margin="450,72,301,293" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="twenty" Margin="488,72,263,293" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="twentyThree" Margin="527,72,225,293" Background="transparent" BorderThickness="0" Click="Bet"/>
+        <Button x:Name="twentySix" Margin="564,72,187,293" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="twentyNine" Margin="603,72,149,293" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="thirtyTwo" Margin="642,72,111,293" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="thirtyFive" Margin="681,72,73,293" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="middle" Margin="720,72,34,293" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="one" Margin="257,127,493,238" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="four" Margin="296,127,455,238" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="seven" Margin="335,127,417,238" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="ten" Margin="374,127,378,238" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="thirteen" Margin="411,127,339,238" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="sixteen" Margin="450,127,301,238" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="nineteen" Margin="488,127,263,238" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="twentyTwo" Margin="527,127,225,238" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="twentyFive" Margin="564,127,187,238" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="twentyEight" Margin="603,127,149,238" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="thirtyOne" Margin="642,127,111,238" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="thirtyFour" Margin="681,127,73,238" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button x:Name="bottom" Margin="720,127,34,238" Background="transparent" BorderThickness="0"  Click="Bet"/>
+        <Button  x:Name="left12" BorderThickness="0"  Margin="258,179,379,195" Background="transparent" Click="Bet" />
+        <Button  x:Name="middle12" BorderThickness="0" Margin="412,179,225,195" Background="transparent" Click="Bet" />
+        <Button  x:Name="right12" BorderThickness="0"  Margin="564,179,73,195" Background="transparent" Click="Bet" />
+        <Button  x:Name="firstEighteen" BorderThickness="0"  Margin="258,219,455,156" Background="transparent" RenderTransformOrigin="0.476,1.336" Click="Bet"/>
+        <Button  x:Name="even" BorderThickness="0"  Margin="335,219,378,156" Background="transparent" RenderTransformOrigin="0.476,1.336" Click="Bet"/>
+        <Button  x:Name="red" BorderThickness="0"  Margin="412,219,301,156" Background="transparent" RenderTransformOrigin="0.476,1.336" Click="Bet"/>
+        <Button  x:Name="black" BorderThickness="0"  Margin="489,219,224,156" Background="transparent" RenderTransformOrigin="0.476,1.336" Click="Bet"/>
+        <Button  x:Name="odd" BorderThickness="0"  Margin="564,219,149,156" Background="transparent" RenderTransformOrigin="0.476,1.336" Click="Bet"/>
+        <Button x:Name="lastEigheen"  Margin="641,219,72,156" Background="transparent" BorderThickness="0"  RenderTransformOrigin="0.476,1.336"/>
+        <Button x:Name="zero" Background="transparent" BorderThickness="0"  HorizontalAlignment="Left" Margin="240,20,0,0" VerticalAlignment="Top" Height="176" Width="17"/>
+        <Button x:Name="zero2" Background="transparent" BorderThickness="0"  HorizontalAlignment="Left" Margin="223,27,0,0" VerticalAlignment="Top" Height="149" Width="17"/>
+        <Button x:Name="zero3" Background="transparent" BorderThickness="0"  HorizontalAlignment="Left" Margin="206,75,0,0" VerticalAlignment="Top" Height="66" Width="17" Click="Bet"/>
         
         <Label x:Name="lblPlayerChips" Content="Chips: $10,000" Foreground="White" BorderThickness="2" Panel.ZIndex="5" FontFamily="Playbill" FontSize="36" Height="45" Width="250" HorizontalAlignment="Right" HorizontalContentAlignment="Right" Margin="0, 165, 15, 0"/>
     </Grid>
