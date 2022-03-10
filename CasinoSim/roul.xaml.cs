@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,8 +12,11 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
+using ThreadState = System.Threading.ThreadState;
 
 namespace CasinoSim
 {
@@ -29,6 +34,7 @@ namespace CasinoSim
         bool chip100 = false;
         bool chip1000 = false;
         bool chip5000 = false;
+        int angle = 0;
 
         PlayerInfo playerInfo;
 
@@ -169,17 +175,32 @@ namespace CasinoSim
             chip5000 = true;
             bet = 5000;
         }
-  private void rulesButton_Click(object sender, RoutedEventArgs e)
+        private void rulesButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Single number bet pays 35 to 1. Also called 'straight up.'Twelve numbers or dozens(first, second, third dozen) pays 2 to 1.Column bet(12 numbers in a row) pays 2 to 1. 18 numbers(1 - 18) pays even money.18 numbers(19 - 36) pays even money. Red or black pays even money. Odd or even bets pay even money.Each spin of the wheel provides a multitude of options for the player. A player may bet on single numbers, rows of numbers, or on adjacent numbers.A player also may play colors, odd or even numbers, among others.");
         }
+
+        private void SpinWheel()
+        {
+            Timer timer = new Timer((o) => 
+            {
+                angle -= 7;
+                Dispatcher.Invoke(DispatcherPriority.Background, (Action)delegate
+                {
+                    wheel.RenderTransformOrigin = new Point(0.5, 0.5);
+                    wheel.RenderTransform = new RotateTransform(angle);
+                }); 
+            }, null, 0, 5);
+        }
+
+
         private void Spin(object sender, RoutedEventArgs e)
         {
-            int winnings = 0;
+             int winnings = 0;
             Random random = new();
             int spin = random.Next(0, 36);
 
-            //just numbers
+            SpinWheel();
             switch(spin)
             {
                 case 0:
@@ -443,7 +464,10 @@ namespace CasinoSim
                 default:
                     break;
             }
-            
+
+            playerInfo.ChipAmount += winnings + (35 * winnings);
+            winnings = 0;
+
             //red and black
             switch(spin)
             {
@@ -499,6 +523,9 @@ namespace CasinoSim
                     break;
             }
 
+            playerInfo.ChipAmount += (winnings * 2);
+            winnings = 0;
+
             //even/odd
             switch(spin)
             {
@@ -553,6 +580,9 @@ namespace CasinoSim
                 default:
                     break;
             }
+
+            playerInfo.ChipAmount += (winnings * 2);
+            winnings = 0;
         
             //first 18/ last 18
             switch(spin)
@@ -606,6 +636,9 @@ namespace CasinoSim
                     Last.Clear();
                     break;
             }
+            
+            playerInfo.ChipAmount += (winnings * 2);
+            winnings = 0;
 
             //Columns
             switch(spin)
@@ -667,6 +700,9 @@ namespace CasinoSim
                 default:
                     break;
             }
+            
+            playerInfo.ChipAmount += (winnings * 4);
+            winnings = 0;
 
             //rows
             switch(spin)
@@ -729,634 +765,864 @@ namespace CasinoSim
                     break;
             }
 
+            playerInfo.ChipAmount += (winnings * 4);
+            lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+
+            zeroGrid.Children.Clear();
+            zero2Grid.Children.Clear();
+            zero3Grid.Children.Clear();
+            oneGrid.Children.Clear();
+            twoGrid.Children.Clear();
+            threeGrid.Children.Clear();
+            fourGrid.Children.Clear();
+            fiveGrid.Children.Clear();
+            sixGrid.Children.Clear();
+            sevenGrid.Children.Clear();
+            eightGrid.Children.Clear();
+            nineGrid.Children.Clear();
+            tenGrid.Children.Clear();
+            elevenGrid.Children.Clear();
+            twelveGrid.Children.Clear();
+            thirteenGrid.Children.Clear();
+            fourteenGrid.Children.Clear();
+            fifteenGrid.Children.Clear();
+            sixteenGrid.Children.Clear();
+            seventeenGrid.Children.Clear();
+            eighteenGrid.Children.Clear();
+            nineteenGrid.Children.Clear();
+            twentyGrid.Children.Clear();
+            twentyOneGrid.Children.Clear();
+            twentyTwoGrid.Children.Clear();
+            twentyThreeGrid.Children.Clear();
+            twentyFourGrid.Children.Clear();
+            twentyFiveGrid.Children.Clear();
+            twentySixGrid.Children.Clear();
+            twentySevenGrid.Children.Clear();
+            twentyEightGrid.Children.Clear();
+            twentyNineGrid.Children.Clear();
+            thirtyGrid.Children.Clear();
+            thirtyOneGrid.Children.Clear();
+            thirtyTwoGrid.Children.Clear();
+            thirtyThreeGrid.Children.Clear();
+            thirtyFourGrid.Children.Clear();
+            thirtyFiveGrid.Children.Clear();
+            thirtySixGrid.Children.Clear();
+            oddGrid.Children.Clear();
+            evenGrid.Children.Clear();
+            left12Grid.Children.Clear();
+            middle12Grid.Children.Clear();
+            right12Grid.Children.Clear();
+            redGrid.Children.Clear();
+            blackGrid.Children.Clear();
+            topGrid.Children.Clear();
+            middleGrid.Children.Clear();
+            bottomGrid.Children.Clear();
+            firstEighteenGrid.Children.Clear();
+            lastEighteenGrid.Children.Clear();
+        
         }
 
         private void Bet(object sender, RoutedEventArgs e)
         {
-            for(int i = 0; i < buttonList.Count; i++)
+            try
             {
-                if(buttonList[i].Equals((Button)sender))
+                for (int i = 0; i < buttonList.Count; i++)
                 {
-                    switch(i)
+                    if (buttonList[i].Equals((Button) sender))
                     {
-                        case 0:
-                            One.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 1:
-                            Two.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 2:
-                            Three.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 3:
-                            Four.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 4:
-                            Five.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 5:
-                            Six.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 6:
-                            Seven.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 7:
-                            Eight.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 8:
-                            Nine.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 9:
-                            Ten.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 10:
-                            Eleven.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 11:
-                            Twelve.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 12:
-                            Thirteen.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 13:
-                            Fourteen.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 14:
-                            Fifteen.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 15:
-                            Sixteen.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 16:
-                            Seventeen.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 17:
-                            Eighteen.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 18:
-                            Nineteen.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 19:
-                            Twenty.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 20:
-                            Twentyone.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 21:
-                            Twentytwo.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 22:
-                            Twentythree.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 23:
-                            Twentyfour.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 24:
-                            Twentyfive.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 25:
-                            Twentysix.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 26:
-                            Twentyseven.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 27:
-                            Twentyeight.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 28:
-                            Twentynine.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 29:
-                            Thirty.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 30:
-                            Thirtyone.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 31:
-                            Thirtytwo.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 32:
-                            Thirtythree.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 33:
-                            Thirtyfour.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 34:
-                            Thirtyfive.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 35:
-                            Thirtysix.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 36:
-                            Left12.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 37:
-                            Middle12.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 38:
-                            Right12.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 39:
-                            First.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 40:
-                            RedAll.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 41:
-                            Even.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 42:
-                            Odd.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 43:
-                            BlackAll.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 44:
-                            Last.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 45:
-                            Top.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 46:
-                            Middle.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 47:
-                            Bottom.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 48:
-                            Zero.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 49:
-                            Zero.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        case 50:
-                            Zero.Add(bet);
-                            if (playerInfo.ChipAmount < bet)
-                            {
-                                MessageBox.Show("Hey! you don't have enough chips for this bet, get more money from the bank!");
-                            }
-                            else
-                            {
-                                playerInfo.ChipAmount -= bet;
-                                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
-                            }
-                            break;
-                        default:
-                            Console.WriteLine("I hate my life");
-                            break;
+                        switch (i)
+                        {
+                            case 0:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    One.Add(bet);
+                                    oneGrid.Children.Add(addImageToBet(bet, oneGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+
+                                }
+
+                                break;
+                            case 1:
+
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Two.Add(bet);
+                                    twoGrid.Children.Add(addImageToBet(bet, twoGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 2:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Three.Add(bet);
+                                    threeGrid.Children.Add(addImageToBet(bet, threeGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 3:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Four.Add(bet);
+                                    fourGrid.Children.Add(addImageToBet(bet, fourGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 4:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Five.Add(bet);
+                                    fiveGrid.Children.Add(addImageToBet(bet, fiveGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 5:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Six.Add(bet);
+                                    sixGrid.Children.Add(addImageToBet(bet, sixGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 6:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Seven.Add(bet);
+                                    sevenGrid.Children.Add(addImageToBet(bet, sevenGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 7:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Eight.Add(bet);
+                                    eightGrid.Children.Add(addImageToBet(bet, eightGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 8:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Nine.Add(bet);
+                                    nineGrid.Children.Add(addImageToBet(bet, nineGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 9:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Ten.Add(bet);
+                                    tenGrid.Children.Add(addImageToBet(bet, tenGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 10:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Eleven.Add(bet);
+                                    elevenGrid.Children.Add(addImageToBet(bet, elevenGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 11:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Twelve.Add(bet);
+                                    twelveGrid.Children.Add(addImageToBet(bet, twelveGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 12:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Thirteen.Add(bet);
+                                    thirteenGrid.Children.Add(addImageToBet(bet, thirteenGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 13:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Fourteen.Add(bet);
+                                    fourteenGrid.Children.Add(addImageToBet(bet, fourteenGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 14:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Fifteen.Add(bet);
+                                    fifteenGrid.Children.Add(addImageToBet(bet, fifteenGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 15:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Sixteen.Add(bet);
+                                    sixteenGrid.Children.Add(addImageToBet(bet, sixteenGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 16:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Seventeen.Add(bet);
+                                    seventeenGrid.Children.Add(addImageToBet(bet, seventeenGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 17:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Eighteen.Add(bet);
+                                    eighteenGrid.Children.Add(addImageToBet(bet, eighteenGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 18:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Nineteen.Add(bet);
+                                    nineteenGrid.Children.Add(addImageToBet(bet, nineteenGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 19:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Twenty.Add(bet);
+                                    twentyGrid.Children.Add(addImageToBet(bet, twentyGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 20:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Twentyone.Add(bet);
+                                    twentyOneGrid.Children.Add(addImageToBet(bet, twentyOneGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 21:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Twentytwo.Add(bet);
+                                    twentyTwoGrid.Children.Add(addImageToBet(bet, twentyTwoGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 22:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Twentythree.Add(bet);
+                                    twentyThreeGrid.Children.Add(addImageToBet(bet, twentyThreeGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 23:
+
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Twentyfour.Add(bet);
+                                    twentyFourGrid.Children.Add(addImageToBet(bet, twentyFourGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 24:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Twentyfive.Add(bet);
+                                    twentyFiveGrid.Children.Add(addImageToBet(bet, twentyFiveGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 25:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Twentysix.Add(bet);
+                                    twentySixGrid.Children.Add(addImageToBet(bet, twentySixGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 26:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Twentyseven.Add(bet);
+                                    twentySevenGrid.Children.Add(addImageToBet(bet, twentySevenGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 27:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Twentyeight.Add(bet);
+                                    twentyEightGrid.Children.Add(addImageToBet(bet, twentyEightGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 28:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Twentynine.Add(bet);
+                                    twentyNineGrid.Children.Add(addImageToBet(bet, twentyNineGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 29:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Thirty.Add(bet);
+                                    thirtyGrid.Children.Add(addImageToBet(bet, thirtyGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 30:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Thirtyone.Add(bet);
+                                    thirtyOneGrid.Children.Add(addImageToBet(bet, thirtyOneGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 31:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Thirtytwo.Add(bet);
+                                    thirtyTwoGrid.Children.Add(addImageToBet(bet, thirtyTwoGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 32:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Thirtythree.Add(bet);
+                                    thirtyThreeGrid.Children.Add(addImageToBet(bet, thirtyThreeGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 33:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Thirtyfour.Add(bet);
+                                    thirtyFourGrid.Children.Add(addImageToBet(bet, thirtyFourGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 34:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Thirtyfive.Add(bet);
+                                    thirtyFiveGrid.Children.Add(addImageToBet(bet, thirtyFiveGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 35:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Thirtysix.Add(bet);
+                                    thirtySixGrid.Children.Add(addImageToBet(bet, thirtySixGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 36:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Left12.Add(bet);
+                                    left12Grid.Children.Add(addImageToBet(bet, left12Grid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 37:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Middle12.Add(bet);
+                                    middle12Grid.Children.Add(addImageToBet(bet, middle12Grid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 38:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Right12.Add(bet);
+                                    right12Grid.Children.Add(addImageToBet(bet, right12Grid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 39:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    First.Add(bet);
+                                    firstEighteenGrid.Children.Add(addImageToBet(bet, firstEighteenGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 40:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    RedAll.Add(bet);
+                                    redGrid.Children.Add(addImageToBet(bet, redGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 41:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Even.Add(bet);
+                                    evenGrid.Children.Add(addImageToBet(bet, evenGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 42:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Odd.Add(bet);
+                                    oddGrid.Children.Add(addImageToBet(bet, oddGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 43:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    BlackAll.Add(bet);
+                                    blackGrid.Children.Add(addImageToBet(bet, blackGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 44:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Last.Add(bet);
+                                    lastEighteenGrid.Children.Add(addImageToBet(bet, lastEighteenGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 45:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Top.Add(bet);
+                                    topGrid.Children.Add(addImageToBet(bet, topGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 46:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Middle.Add(bet);
+                                    middleGrid.Children.Add(addImageToBet(bet, middleGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 47:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Bottom.Add(bet);
+                                    bottomGrid.Children.Add(addImageToBet(bet, bottomGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 48:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Zero.Add(bet);
+                                    zeroGrid.Children.Add(addImageToBet(bet, zeroGrid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 49:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Zero.Add(bet);
+                                    zero2Grid.Children.Add(addImageToBet(bet, zero2Grid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            case 50:
+                                if (playerInfo.ChipAmount < bet)
+                                {
+                                    MessageBox.Show(
+                                        "Hey! you don't have enough chips for this bet, get more money from the bank!");
+                                }
+                                else
+                                {
+                                    Zero.Add(bet);
+                                    zero3Grid.Children.Add(addImageToBet(bet, zero3Grid));
+                                    playerInfo.ChipAmount -= bet;
+                                    lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                                }
+
+                                break;
+                            default:
+                                Console.WriteLine("I hate my life");
+                                break;
+                        }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Select a bet value before placing bet");
+            }
+
+            
+        }
+        
+        private Image addImageToBet(int chipValue, Grid grid)
+        {
+            Image chipImg = new Image();
+            chipImg.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip{chipValue}.png"));
+            chipImg.Height = 15;
+            chipImg.Width = 15;
+            chipImg.SetValue(Grid.ColumnProperty, grid.Children.Count);
+            return chipImg;
         }
 
         private Dictionary<string, Dictionary<string, List<int>>> Bets = new();

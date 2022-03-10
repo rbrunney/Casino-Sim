@@ -14,7 +14,6 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/112bc133ec2d0fa53cdd972c13f6c97f0ea946065df27ea9189baa990cccb3/Window.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CasinoSim/craps.xaml.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -72,6 +71,12 @@
       <workItem from="1646183344575" duration="7527000" />
       <workItem from="1646708670579" duration="2306000" />
       <workItem from="1646770769920" duration="604000" />
+      <workItem from="1646839898687" duration="3949000" />
+      <workItem from="1646847048933" duration="5513000" />
+      <workItem from="1646861892550" duration="286000" />
+      <workItem from="1646871406427" duration="1815000" />
+      <workItem from="1646887892566" duration="3328000" />
+      <workItem from="1646891340773" duration="3695000" />
     </task>
     <servers />
   </component>

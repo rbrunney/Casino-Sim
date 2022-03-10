@@ -190,23 +190,30 @@
             </Grid.ColumnDefinitions>
 
             <Image x:Name="imgDiceOne" Source="files/resources/CasinoAssets/Craps/Dice3.png" Panel.ZIndex="3" Grid.Column="1" Grid.Row="1"/>
+            <Label Grid.Row="1" Grid.Column="3" x:Name="diceValueRoll" Foreground="White" FontSize="55"/>
             <Image x:Name="imgDiceTwo" Source="files/resources/CasinoAssets/Craps/Dice4.png" Panel.ZIndex="3" Grid.Column="4" Grid.Row="1"/>
 
+            <Image x:Name="imgPointFourOn" Source="../files/resources/CasinoAssets/Craps/CrapsOnIndicator.png" Height="35" Width="35"/>
             <Button Background="Transparent" BorderThickness="0" Opacity="0.3" Panel.ZIndex="3" x:Name="btnMultiRollFour" Click="BtnMultiRoll_Click">
                 <Grid x:Name="btnMultiRollFourChips"/>
             </Button>
+            <Image Grid.Column="1" x:Name="imgPointFiveOn" Source="../files/resources/CasinoAssets/Craps/CrapsOnIndicator.png" Height="35" Width="35"/>
             <Button Background="Transparent" BorderThickness="0" Opacity="0.3" Panel.ZIndex="3" x:Name="btnMultiRollFive" Grid.Column="1" Click="BtnMultiRoll_Click">
                 <Grid x:Name="btnMultiRollFiveChips"/>
             </Button>
+            <Image Grid.Column="2" x:Name="imgPointSixOn" Source="../files/resources/CasinoAssets/Craps/CrapsOnIndicator.png" Height="35" Width="35"/>
             <Button Background="Transparent" BorderThickness="0" Opacity="0.3" Panel.ZIndex="3" x:Name="btnMultiRollSix" Grid.Column="2" Click="BtnMultiRoll_Click">
                 <Grid x:Name="btnMultiRollSixChips"/>
             </Button>
+            <Image Grid.Column="3" x:Name="imgPointEightOn" Source="../files/resources/CasinoAssets/Craps/CrapsOnIndicator.png" Height="35" Width="35"/>
             <Button Background="Transparent" BorderThickness="0" Opacity="0.3" Panel.ZIndex="3" x:Name="btnMultiRollEight" Grid.Column="3" Click="BtnMultiRoll_Click">
                 <Grid x:Name="btnMultiRollEightChips"/>
             </Button>
+            <Image Grid.Column="4" x:Name="imgPointNineOn" Source="../files/resources/CasinoAssets/Craps/CrapsOnIndicator.png" Height="35" Width="35"/>
             <Button Background="Transparent" BorderThickness="0" Opacity="0.3" Panel.ZIndex="3" x:Name="btnMultiRollNine" Grid.Column="4" Click="BtnMultiRoll_Click">
                 <Grid x:Name="btnMultiRollNineChips"/>
             </Button>
+            <Image Grid.Column="5" x:Name="imgPointTenOn" Source="../files/resources/CasinoAssets/Craps/CrapsOnIndicator.png" Height="35" Width="35"/>
             <Button Background="Transparent" BorderThickness="0" Opacity="0.3" Panel.ZIndex="3" x:Name="btnMultiRollTen" Grid.Column="5" Click="BtnMultiRoll_Click">
                 <Grid x:Name="btnMultiRollTenChips"/>  
             </Button>
@@ -222,6 +229,7 @@
             </Button>
         </Grid>
         <Label x:Name="asdf"  Content="" Foreground="White" HorizontalAlignment="Left" Margin="38,150,0,0" VerticalAlignment="Top" Height="90" Width="88" FontSize="30"/>
+        <Image x:Name="imgPoint" Source="../files/resources/CasinoAssets/Craps/CrapsOffIndicator.png" Width="35" Height="35" Margin="0, 100, 0, 0"/>
         <Label x:Name="lblPlayerChips" Content="Chips: $10,000" Foreground="White" BorderThickness="2" Panel.ZIndex="5" FontFamily="Playbill" FontSize="36" Height="45" Width="250" HorizontalContentAlignment="Left" Margin="15,220,0,0" />
     </Grid>
 </Window>

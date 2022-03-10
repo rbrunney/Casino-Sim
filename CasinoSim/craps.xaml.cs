@@ -4,7 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Color = System.Drawing.Color;
 
 namespace CasinoSim
 {
@@ -57,7 +59,14 @@ namespace CasinoSim
             insertLists();
             playerInfo = new PlayerInfo();
             lblPlayerChips.Content = $"Chips:${playerInfo.ChipAmount}";
-            asdf.Content = "Point:\nNone";
+            asdf.Content = "Point:";
+
+            imgPointFourOn.Source = null;
+            imgPointFiveOn.Source = null;
+            imgPointSixOn.Source = null;
+            imgPointEightOn.Source = null;
+            imgPointNineOn.Source = null;
+            imgPointTenOn.Source = null;
         }
         public int point = 0;
         //goes back to game selection
@@ -376,8 +385,7 @@ namespace CasinoSim
                     
                 }
                 int value = getValueRoll(imgDiceOne, imgDiceTwo);
-
-                //asdf.Content = singleRollBets(value);
+                diceValueRoll.Content = value.ToString();
                 singleRollBets(value);
                 multiRollBets(value);
             } 
@@ -539,6 +547,7 @@ namespace CasinoSim
                     }
                     break;
                 default:
+                    MessageBox.Show("You have lost your bets");
                     break;
             }
 
@@ -899,8 +908,30 @@ namespace CasinoSim
             if(point == 0 && !(value == 7 || value == 11 || value == 2 || value == 3 || value == 12))
             {
                 point = value;
-                asdf.Content = $"Point:\n{point}";
-                
+                imgPoint.Source = null;
+                switch (point)
+                {
+                    case 4:
+                        imgPointFourOn.Source = new BitmapImage(new Uri(
+                            $@"pack://application:,,,/files/resources/CasinoAssets/Craps/CrapsOnIndicator.png"));
+                        break;
+                    case 5:
+                        imgPointFiveOn.Source = new BitmapImage(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/Craps/CrapsOnIndicator.png"));
+                        break;
+                    case 6:
+                        imgPointSixOn.Source = new BitmapImage(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/Craps/CrapsOnIndicator.png"));
+                        break;
+                    case 8:
+                        imgPointEightOn.Source = new BitmapImage(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/Craps/CrapsOnIndicator.png"));
+                        break;
+                    case 9:
+                        imgPointNineOn.Source = new BitmapImage(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/Craps/CrapsOnIndicator.png"));
+                        break;
+                    case 10:
+                        imgPointTenOn.Source = new BitmapImage(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/Craps/CrapsOnIndicator.png"));
+                        break;
+                }
+
             }else if(point == 0 && (value == 2 || value == 3 || value == 12))
             {
                 if(getBetListValues("Don't Pass Line") != 0)
@@ -908,9 +939,21 @@ namespace CasinoSim
                     winnings += 2 * getBetListValues("Don't Pass Line");
                     playerInfo.ChipAmount += winnings;
                 }
+                else
+                {
+                    MessageBox.Show("You have lost your bets");
+                }
+
                 removeAllMultiRollList();
 
                 point = 0;
+                imgPointFourOn.Source = null;
+                imgPointFiveOn.Source = null;
+                imgPointSixOn.Source = null;
+                imgPointEightOn.Source = null;
+                imgPointNineOn.Source = null;
+                imgPointTenOn.Source = null;
+                
             } else if(point == 0 && (value == 7 || value == 11))
             {
                 if(getBetListValues("Pass Line") != 0)
@@ -920,22 +963,44 @@ namespace CasinoSim
                 }
                 removeAllMultiRollList();
                 point = 0;
+                imgPointFourOn.Source = null;
+                imgPointFiveOn.Source = null;
+                imgPointSixOn.Source = null;
+                imgPointEightOn.Source = null;
+                imgPointNineOn.Source = null;
+                imgPointTenOn.Source = null;
             } else if(point != 0 && value == 7)
             {
                 removeAllMultiRollList();
                 point = 0;
-                asdf.Content = "Point:\nNone";
+                imgPointFourOn.Source = null;
+                imgPointFiveOn.Source = null;
+                imgPointSixOn.Source = null;
+                imgPointEightOn.Source = null;
+                imgPointNineOn.Source = null;
+                imgPointTenOn.Source = null;
+                imgPoint.Source = new BitmapImage(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/Craps/CrapsOffIndicator.png"));
                 if(getBetListValues("Don't Pass Line") != 0)
                 {
                     winnings += 2 * getBetListValues("Don't Pass Line");
                     removeMultiRollList("Dont' Pass Line");
                     playerInfo.ChipAmount +=winnings;
                 }
+                else
+                {
+                    MessageBox.Show("You have lost your bets, because you rolled a 7 before the set point");
+                }
             } else
             {
                 if(value == point)
                 {
                     point = 0;
+                    imgPointFourOn.Source = null;
+                    imgPointFiveOn.Source = null;
+                    imgPointSixOn.Source = null;
+                    imgPointEightOn.Source = null;
+                    imgPointNineOn.Source = null;
+                    imgPointTenOn.Source = null;
                     if(getBetListValues("Pass Line") != 0)
                     {
                         winnings += 2 * getBetListValues("Pass Line");
@@ -949,8 +1014,15 @@ namespace CasinoSim
                         winnings += 2 * getBetListValues("Don't Pass Line");
                         playerInfo.ChipAmount +=winnings;
                     }
+
                     removeAllMultiRollList();
                     point = 0;
+                    imgPointFourOn.Source = null;
+                    imgPointFiveOn.Source = null;
+                    imgPointSixOn.Source = null;
+                    imgPointEightOn.Source = null;
+                    imgPointNineOn.Source = null;
+                    imgPointTenOn.Source = null;
                 } else
                 {
                     switch(value)
@@ -966,6 +1038,7 @@ namespace CasinoSim
                             }
                             if(point == value)
                             {
+                                imgPoint.Source = new BitmapImage(new Uri(@"pack://application:,,,/files/resources/CasinoAssets/Craps/CrapsOffIndicator.png"));
                                 if(getBetListValues("Pass Line") != 0)
                                 {
                                     winnings += 2 * getBetListValues("Pass Line");
@@ -973,6 +1046,12 @@ namespace CasinoSim
                                 }
                                 removeAllMultiRollList();
                                 point = 0;
+                                imgPointFourOn.Source = null;
+                                imgPointFiveOn.Source = null;
+                                imgPointSixOn.Source = null;
+                                imgPointEightOn.Source = null;
+                                imgPointNineOn.Source = null;
+                                imgPointTenOn.Source = null;
                             }
                             break;
                         case 5:
@@ -993,6 +1072,12 @@ namespace CasinoSim
                                 }
                                 removeAllMultiRollList();
                                 point = 0;
+                                imgPointFourOn.Source = null;
+                                imgPointFiveOn.Source = null;
+                                imgPointSixOn.Source = null;
+                                imgPointEightOn.Source = null;
+                                imgPointNineOn.Source = null;
+                                imgPointTenOn.Source = null;
                             }
                             break;
                         case 6:
@@ -1012,6 +1097,12 @@ namespace CasinoSim
                                 }
                                 removeAllMultiRollList();
                                 point = 0;
+                                imgPointFourOn.Source = null;
+                                imgPointFiveOn.Source = null;
+                                imgPointSixOn.Source = null;
+                                imgPointEightOn.Source = null;
+                                imgPointNineOn.Source = null;
+                                imgPointTenOn.Source = null;
                             }
                             break;
                         case 8:
@@ -1031,6 +1122,12 @@ namespace CasinoSim
                                 }
                                 removeAllMultiRollList();
                                 point = 0;
+                                imgPointFourOn.Source = null;
+                                imgPointFiveOn.Source = null;
+                                imgPointSixOn.Source = null;
+                                imgPointEightOn.Source = null;
+                                imgPointNineOn.Source = null;
+                                imgPointTenOn.Source = null;
                             }
                             break;
                         case 9:
@@ -1050,6 +1147,12 @@ namespace CasinoSim
                                 }
                                 removeAllMultiRollList();
                                 point = 0;
+                                imgPointFourOn.Source = null;
+                                imgPointFiveOn.Source = null;
+                                imgPointSixOn.Source = null;
+                                imgPointEightOn.Source = null;
+                                imgPointNineOn.Source = null;
+                                imgPointTenOn.Source = null;
                             }
                             break;
                         case 10:
@@ -1069,6 +1172,12 @@ namespace CasinoSim
                                 }
                                 removeAllMultiRollList();
                                 point = 0;
+                                imgPointFourOn.Source = null;
+                                imgPointFiveOn.Source = null;
+                                imgPointSixOn.Source = null;
+                                imgPointEightOn.Source = null;
+                                imgPointNineOn.Source = null;
+                                imgPointTenOn.Source = null;
                             }
                             break;
                         default:
