@@ -94,14 +94,7 @@ namespace CasinoSim
             {
                 MessageBox.Show("Place a bet before dealing a hand");
             }
-            else if(playerInfo.ChipAmount < bet)
-            {
-                MessageBox.Show("Place a bet that you can afford");
-                restartBet();
-                imgPlayerBet.Source = null;
-            }
             else
-
             {
                 restart();
                 Resources["winLabel"] = "";
@@ -132,9 +125,6 @@ namespace CasinoSim
                 btnChip100.IsEnabled = false;
                 btnChip1000.IsEnabled = false;
                 btnChip5000.IsEnabled = false;
-
-                playerInfo.ChipAmount -= bet;
-                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}"; 
             }
         }
         
@@ -192,8 +182,20 @@ namespace CasinoSim
             restartBet();
             chip1 = true;
             bet = 1;
-            chipValue = bet;
-            imgPlayerBet.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip{chipValue}.png"));
+            
+            if (playerInfo.ChipAmount >= bet)
+            {
+                chipValue = bet;
+                playerInfo.ChipAmount -= bet;
+                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}";
+                imgPlayerBet.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip{chipValue}.png"));
+            }
+            else
+            {
+                MessageBox.Show("Not enough chips to bet!");
+            }
+
+           
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -202,8 +204,19 @@ namespace CasinoSim
             restartBet();
             chip5 = true;
             bet = 5;
-            chipValue = bet;
-            imgPlayerBet.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip{chipValue}.png"));
+            
+            if (playerInfo.ChipAmount >= bet)
+            {
+                chipValue = bet;
+                playerInfo.ChipAmount -= bet;
+                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}"; 
+                imgPlayerBet.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip{chipValue}.png"));
+            }
+            else
+            {
+                MessageBox.Show("Not enough chips to bet!");
+            }
+            
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -212,8 +225,19 @@ namespace CasinoSim
             restartBet();
             chip10 = true;
             bet = 10;
-            chipValue = bet;
-            imgPlayerBet.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip{chipValue}.png"));
+            
+            if (playerInfo.ChipAmount >= bet)
+            {
+                chipValue = bet;
+                playerInfo.ChipAmount -= bet;
+                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}"; 
+                imgPlayerBet.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip{chipValue}.png"));
+            }
+            else
+            {
+                MessageBox.Show("Not enough chips to bet!");
+            }
+            
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
@@ -222,8 +246,19 @@ namespace CasinoSim
             restartBet();
             chip20 = true;
             bet = 20;
-            chipValue = bet;
-            imgPlayerBet.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip{chipValue}.png"));
+            
+            if (playerInfo.ChipAmount >= bet)
+            {
+                chipValue = bet;
+                playerInfo.ChipAmount -= bet;
+                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}"; 
+                imgPlayerBet.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip{chipValue}.png"));
+            }
+            else
+            {
+                MessageBox.Show("Not enough chips to bet!");
+            }
+            
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
@@ -232,8 +267,19 @@ namespace CasinoSim
             restartBet();
             chip50 = true;
             bet = 50;
-            chipValue = bet;
-            imgPlayerBet.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip{chipValue}.png"));
+            
+            if (playerInfo.ChipAmount >= bet)
+            {
+                chipValue = bet;
+                playerInfo.ChipAmount -= bet;
+                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}"; 
+                imgPlayerBet.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip{chipValue}.png"));
+            }
+            else
+            {
+                MessageBox.Show("Not enough chips to bet!");
+            }
+            
         }
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
@@ -242,8 +288,19 @@ namespace CasinoSim
             restartBet();
             chip100 = true;
             bet = 100;
-            chipValue = bet;
-            imgPlayerBet.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip{chipValue}.png"));
+            
+            if (playerInfo.ChipAmount >= bet)
+            {
+                chipValue = bet;
+                playerInfo.ChipAmount -= bet;
+                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}"; 
+                imgPlayerBet.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip{chipValue}.png"));
+            }
+            else
+            {
+                MessageBox.Show("Not enough chips to bet!");
+            }
+            
         }
 
         private void Button_Click_6(object sender, RoutedEventArgs e)
@@ -252,8 +309,19 @@ namespace CasinoSim
             restartBet();
             chip1000 = true;
             bet = 1000;
-            chipValue = bet;
-            imgPlayerBet.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip{chipValue}.png"));
+            
+            if (playerInfo.ChipAmount >= bet)
+            {
+                chipValue = bet;
+                playerInfo.ChipAmount -= bet;
+                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}"; 
+                imgPlayerBet.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip{chipValue}.png"));
+            }
+            else
+            {
+                MessageBox.Show("Not enough chips to bet!");
+            }
+            
         }
 
         private void Button_Click_7(object sender, RoutedEventArgs e)
@@ -262,8 +330,18 @@ namespace CasinoSim
             restartBet();
             chip5000 = true;
             bet = 5000;
-            chipValue = bet;
-            imgPlayerBet.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip{chipValue}.png"));
+            if (playerInfo.ChipAmount >= bet)
+            {
+                chipValue = bet;
+                playerInfo.ChipAmount -= bet;
+                lblPlayerChips.Content = $"Chips: ${playerInfo.ChipAmount}"; 
+                imgPlayerBet.Source = new BitmapImage(new Uri($@"pack://application:,,,/files/resources/CasinoAssets/UI/Chip{chipValue}.png"));
+            }
+            else
+            {
+                MessageBox.Show("Not enough chips to bet!");
+            }
+            
         }
         private void standButton_Click(object sender, RoutedEventArgs e)
         {
