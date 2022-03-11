@@ -201,6 +201,8 @@ namespace CasinoSim
             int spin = random.Next(0, 36);
 
             SpinWheel();
+
+            lblWheelSpinNum.Content = $"Spin: {spin}";
             switch(spin)
             {
                 case 0:
