@@ -91,7 +91,10 @@ namespace CasinoSim
             return imageList;
         }
         
-
+        private void rulesButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Then you will roll two dice. If you roll a 2,3 or 12 you lose and need to bet again. If you roll a 7 or 11 you win. If you roll anything  besides those numbers that is your new total to roll for example 9. If you roll the dice and get a 9 you win. If you roll a seven you lose. Good luck have fun!");
+        }
         private List<Button> getSingleRollBets()
         {
             List<Button> betList = new List<Button>();
